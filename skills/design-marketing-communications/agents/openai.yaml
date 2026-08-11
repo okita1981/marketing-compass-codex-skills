@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 06｜意味と接点をつくる
+  short_description: 顧客状態・意味・想起・期待から接点と役割を一貫して組み立てる
+  default_prompt: $design-marketing-communications を使って、動かす顧客状態、覚えてほしい意味、PESOと接触後導線を設計してください。
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true

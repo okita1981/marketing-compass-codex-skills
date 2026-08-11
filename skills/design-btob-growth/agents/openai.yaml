@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 04｜BtoBを動かす
+  short_description: 商談・稟議・導入・継続まで案件成立構造を組み立てる
+  default_prompt: $design-btob-growth を使って、ICP、需要トリガー、商談、稟議、案件停止理由、次の一歩を設計してください。
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true
