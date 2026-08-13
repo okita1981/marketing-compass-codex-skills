@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Structural + content-parity verification for the Claude Code skill copies.
 
-Checks, per the 8 in-scope skills:
+Checks, per the 9 in-scope skills:
   1. .claude/skills/<name>/SKILL.md exists.
   2. YAML frontmatter parses, has non-empty `name` and `description`.
   3. `name` in frontmatter equals the directory name (required for the
@@ -34,6 +34,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
 SKILLS = [
+    "articulate-marketing-problem",
     "diagnose-marketing-structure",
     "design-marketing-measurement",
     "evaluate-ad-investment",

@@ -4,7 +4,7 @@ Marketing Compassは、マーケティングを施策の一覧ではなく、事
 
 このリポジトリには、Marketing Compass確定正本 v1.0、正本を共通参照して動く8つのGPT / Codex向けスキル、ならびに関連する汎用思考スキル「思考を整理する7段の階段」を収録しています。
 
-GPT / Codex向けスキルのうち7つ（01〜07）と「思考を整理する7段の階段」は、同一内容のままClaude Code project skillとしても利用できます。詳しくは[Claude Code](#claude-code)を参照してください。
+Marketing Compass 8スキル（00〜07）と「思考を整理する7段の階段」の計9スキルは、同一内容のままClaude Code project skillとしても利用できます。詳しくは[Claude Code](#claude-code)を参照してください。
 
 ## 収録スキル
 
@@ -72,12 +72,15 @@ ChatGPTとCodexは、依頼内容に応じて該当スキルを暗黙に選択�
 
 ### Claude Code
 
-このリポジトリは、GPT / Codex版とは別に、[Claude Code](https://code.claude.com/docs/en/claude-code)向けのproject skillとして`.claude/skills/`配下に同一内容のコピーを収録しています。対応スキルはMarketing Compass 7スキル（01〜07）と「思考を整理する7段の階段」の計8つです。「課題を言葉にする」（`articulate-marketing-problem`、00）はGPT / Codex版のみの提供で、今回のClaude Code対応の範囲には含まれていません。
+このリポジトリは、GPT / Codex版とは別に、[Claude Code](https://code.claude.com/docs/en/claude-code)向けのproject skillとして`.claude/skills/`配下に同一内容のコピーを収録しています。対応スキルはMarketing Compass 8スキル（00〜07）と「思考を整理する7段の階段」の計9つで、GPT / Codex版に収録された全スキルが対象です。
 
-#### 対応している8スキル
+`articulate-marketing-problem`（00｜課題を言葉にする）は、01〜07の専門診断・設計スキルの前段に位置する入口スキルです。まだ課題が言語化されていない場面で、事実・計測値・解釈・感情・仮説・解決策を分離し、01以降が分析できる与件（検証可能な課題定義）を作ります。基本フローは[基本フロー](#基本フロー)を参照してください。
+
+#### 対応している9スキル
 
 | # | 表示名 | Claude Codeでの呼び出し |
 |---|---|---|
+| 00 | 課題を言葉にする | `/articulate-marketing-problem` |
 | 01 | 売上の構造を解く | `/diagnose-marketing-structure` |
 | 02 | 成果を測る | `/design-marketing-measurement` |
 | 03 | 広告投資を見極める | `/evaluate-ad-investment` |
@@ -89,7 +92,7 @@ ChatGPTとCodexは、依頼内容に応じて該当スキルを暗黙に選択�
 
 #### Project skillとして使う（リポジトリをそのまま使う場合）
 
-このリポジトリをcloneし、そのディレクトリでClaude Codeを起動するだけで、`.claude/skills/`配下の8スキルがそのプロジェクトのproject skillとして自動的に読み込まれます。追加のインストール操作は不要です。
+このリポジトリをcloneし、そのディレクトリでClaude Codeを起動するだけで、`.claude/skills/`配下の9スキルがそのプロジェクトのproject skillとして自動的に読み込まれます。追加のインストール操作は不要です。
 
 ```bash
 git clone https://github.com/okita1981/marketing-compass-codex-skills.git
@@ -120,6 +123,10 @@ Copy-Item -Recurse -Force .claude/skills/* ~/.claude/skills/
 #### 呼び出し方
 
 明示的に呼び出す場合は、スキル名の前に`/`を付けます（Codex/ChatGPT版の`$スキル名`とは記法が異なります）。
+
+```text
+/articulate-marketing-problem を使って、部門ごとに異なる現象・数字・解釈を整理し、まず課題を言葉にしてください。
+```
 
 ```text
 /diagnose-marketing-structure を使って、売上が伸びない原因を施策提案の前に構造分解してください。
@@ -156,8 +163,8 @@ python3 scripts/verify-claude-code-skills.py
 
 ```text
 canonical/     Marketing Compassの思想・定義・判断原則の正本
-skills/        Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本）
-.claude/skills/ 上記のうち8スキルをClaude Code project skill向けに複製したコピー
+skills/        Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
+.claude/skills/ 上記9スキルすべてをClaude Code project skill向けに複製したコピー
 scripts/       .claude/skills/ の生成・同期・検証スクリプト
 ```
 

@@ -18,10 +18,11 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
 
-# The 8 Claude Code skills this repo distributes. articulate-marketing-problem
-# exists in skills/ (Marketing Compass 00) but is intentionally NOT part of
-# the Claude Code conversion scope and is left untouched here.
+# The 9 Claude Code skills this repo distributes: Marketing Compass 00-07
+# (articulate-marketing-problem is the entry-point skill, 00) plus the
+# related thinking-staircase skill.
 SKILLS=(
+  articulate-marketing-problem
   diagnose-marketing-structure
   design-marketing-measurement
   evaluate-ad-investment
