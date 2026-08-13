@@ -9,102 +9,39 @@
 # skills/<name>/references/ change, to propagate the update to the Claude
 # Code copy without hand-editing two places.
 #
+# The skill list and copy algorithm live in scripts/lib-sync-skills.sh,
+# shared with scripts/sync-claude-code-plugin.sh (which targets
+# plugin/skills/ instead), so both destinations always cover the same set of
+# skills.
+#
 # Usage:
 #   scripts/sync-claude-code-skills.sh          # sync + report what changed
 #   scripts/sync-claude-code-skills.sh --check  # exit 1 if out of sync, no writes
 
-set -euo pipefail
+set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$REPO_ROOT"
-
-# The 9 Claude Code skills this repo distributes: Marketing Compass 00-07
-# (articulate-marketing-problem is the entry-point skill, 00) plus the
-# related thinking-staircase skill.
-SKILLS=(
-  articulate-marketing-problem
-  diagnose-marketing-structure
-  design-marketing-measurement
-  evaluate-ad-investment
-  design-btob-growth
-  assess-ma-crm-ltv
-  design-marketing-communications
-  audit-marketing-reasoning
-  thinking-staircase
-)
+# shellcheck source=lib-sync-skills.sh
+source "$REPO_ROOT/scripts/lib-sync-skills.sh"
 
 CHECK_ONLY=0
 if [[ "${1:-}" == "--check" ]]; then
   CHECK_ONLY=1
 fi
 
-CHANGED=0
-
-for name in "${SKILLS[@]}"; do
-  src="skills/$name"
-  dst=".claude/skills/$name"
-
-  if [[ ! -f "$src/SKILL.md" ]]; then
-    echo "ERROR: missing source $src/SKILL.md" >&2
-    exit 1
-  fi
-
-  if [[ "$CHECK_ONLY" -eq 1 ]]; then
-    if [[ ! -f "$dst/SKILL.md" ]] || ! diff -q "$src/SKILL.md" "$dst/SKILL.md" >/dev/null 2>&1; then
-      echo "OUT OF SYNC: $dst/SKILL.md"
-      CHANGED=1
-    fi
-    if [[ -d "$src/references" ]]; then
-      while IFS= read -r -d '' f; do
-        rel="${f#"$src/references/"}"
-        if [[ ! -f "$dst/references/$rel" ]] || ! diff -q "$f" "$dst/references/$rel" >/dev/null 2>&1; then
-          echo "OUT OF SYNC: $dst/references/$rel"
-          CHANGED=1
-        fi
-      done < <(find "$src/references" -type f -name '*.md' -print0)
-    fi
-    continue
-  fi
-
-  mkdir -p "$dst"
-  if [[ ! -f "$dst/SKILL.md" ]] || ! diff -q "$src/SKILL.md" "$dst/SKILL.md" >/dev/null 2>&1; then
-    cp "$src/SKILL.md" "$dst/SKILL.md"
-    echo "updated: $dst/SKILL.md"
-    CHANGED=1
-  fi
-
-  if [[ -d "$src/references" ]]; then
-    mkdir -p "$dst/references"
-    while IFS= read -r -d '' f; do
-      rel="${f#"$src/references/"}"
-      if [[ ! -f "$dst/references/$rel" ]] || ! diff -q "$f" "$dst/references/$rel" >/dev/null 2>&1; then
-        cp "$f" "$dst/references/$rel"
-        echo "updated: $dst/references/$rel"
-        CHANGED=1
-      fi
-    done < <(find "$src/references" -type f -name '*.md' -print0)
-
-    # Remove any generated reference file that no longer exists in the source,
-    # so the Claude Code copy never drifts ahead of the canonical corpus.
-    if [[ -d "$dst/references" ]]; then
-      while IFS= read -r -d '' f; do
-        rel="${f#"$dst/references/"}"
-        if [[ ! -f "$src/references/$rel" ]]; then
-          rm "$f"
-          echo "removed (no longer in source): $dst/references/$rel"
-          CHANGED=1
-        fi
-      done < <(find "$dst/references" -type f -name '*.md' -print0)
-    fi
-  fi
-done
+if sync_skills_to ".claude/skills" "$CHECK_ONLY"; then
+  CHANGED=0
+else
+  CHANGED=1
+fi
 
 if [[ "$CHECK_ONLY" -eq 1 ]]; then
   if [[ "$CHANGED" -eq 1 ]]; then
-    echo "Claude Code skill copies are out of sync with skills/. Run scripts/sync-claude-code-skills.sh to update." >&2
+    echo "Claude Code skill copies (.claude/skills/) are out of sync with skills/. Run scripts/sync-claude-code-skills.sh to update." >&2
     exit 1
   fi
-  echo "Claude Code skill copies are in sync with skills/."
+  echo "Claude Code skill copies (.claude/skills/) are in sync with skills/."
   exit 0
 fi
 

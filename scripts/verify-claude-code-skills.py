@@ -32,18 +32,8 @@ import sys
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-
-SKILLS = [
-    "articulate-marketing-problem",
-    "diagnose-marketing-structure",
-    "design-marketing-measurement",
-    "evaluate-ad-investment",
-    "design-btob-growth",
-    "assess-ma-crm-ltv",
-    "design-marketing-communications",
-    "audit-marketing-reasoning",
-    "thinking-staircase",
-]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from _skills_list import SKILLS  # noqa: E402 (see scripts/_skills_list.py)
 
 FRONTMATTER_RE = re.compile(r"^---\r?\n(.*?)\r?\n---\r?\n", re.S)
 LINK_RE = re.compile(r"\[[^\]]*\]\((references/[^)\s]+)\)")
@@ -186,7 +176,8 @@ def git_diff_paths(paths: list[str]) -> str:
             ["git", "diff", "--name-only", "origin/main...HEAD", "--", *paths],
             cwd=REPO_ROOT,
             capture_output=True,
-            text=True,
+            encoding="utf-8",
+            errors="replace",
             check=True,
         )
         return result.stdout.strip()

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "marketing-compass",
+  "displayName": "Marketing Compass",
+  "version": "1.0.0",
+  "description": "A judgment framework for marketing: articulate the problem, diagnose revenue structure and the maximum bottleneck, design measurement, evaluate ad investment, design B2B growth, assess MA/CRM/LTV, design communications, and audit marketing reasoning. Includes the related general-purpose Thinking Staircase skill.",
+  "author": {
+    "name": "Kousuke Okita / 沖田紘亮",
+    "url": "https://github.com/okita1981"
+  },
+  "homepage": "https://github.com/okita1981/marketing-compass-codex-skills",
+  "repository": "https://github.com/okita1981/marketing-compass-codex-skills",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "marketing",
+    "revenue",
+    "b2b",
+    "ltv",
+    "crm",
+    "measurement",
+    "kpi",
+    "advertising",
+    "communications",
+    "growth",
+    "reasoning",
+    "thinking"
+  ]
+}
