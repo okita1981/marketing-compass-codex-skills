@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import filecmp
 import shutil
 import sys
 from pathlib import Path
@@ -15,17 +14,42 @@ from _skills_list import SKILLS  # noqa: E402
 
 SOURCE_ROOT = REPO_ROOT / "skills"
 TARGET_ROOT = REPO_ROOT / "plugins" / "marketing-compass" / "skills"
+PRODUCT_BLOCK = b"  products:\n  - chatgpt\n  - codex\n  - api\n  - atlas\n"
+
+
+def expected_bytes(source_root: Path, source_file: Path) -> bytes:
+    relative = source_file.relative_to(source_root).as_posix()
+    content = source_file.read_bytes().replace(b"\r\n", b"\n")
+    if relative == "agents/openai.yaml":
+        content = content.replace(PRODUCT_BLOCK, b"")
+    if relative == "references/model.md" and content.endswith(b"\n\n"):
+        content = content[:-1]
+    return content
 
 
 def tree_matches(source: Path, target: Path) -> bool:
     if not target.is_dir():
         return False
-    comparison = filecmp.dircmp(source, target)
-    if comparison.left_only or comparison.right_only or comparison.funny_files:
+    source_files = {path.relative_to(source).as_posix(): path for path in source.rglob("*") if path.is_file()}
+    target_files = {path.relative_to(target).as_posix(): path for path in target.rglob("*") if path.is_file()}
+    if source_files.keys() != target_files.keys():
         return False
-    if any(not filecmp.cmp(source / name, target / name, shallow=False) for name in comparison.common_files):
-        return False
-    return all(tree_matches(source / name, target / name) for name in comparison.common_dirs)
+    return all(
+        expected_bytes(source, path) == target_files[relative].read_bytes().replace(b"\r\n", b"\n")
+        for relative, path in source_files.items()
+    )
+
+
+def normalize_package(skill_root: Path) -> None:
+    agent_file = skill_root / "agents" / "openai.yaml"
+    if agent_file.is_file():
+        agent_file.write_bytes(agent_file.read_bytes().replace(b"\r\n", b"\n").replace(PRODUCT_BLOCK, b""))
+    model_file = skill_root / "references" / "model.md"
+    if model_file.is_file():
+        content = model_file.read_bytes().replace(b"\r\n", b"\n")
+        if content.endswith(b"\n\n"):
+            content = content[:-1]
+        model_file.write_bytes(content)
 
 
 def main() -> int:
@@ -55,6 +79,7 @@ def main() -> int:
         if destination.exists():
             shutil.rmtree(destination)
         shutil.copytree(SOURCE_ROOT / name, destination)
+        normalize_package(destination)
         print(f"Synced {name}")
     if not stale and not extras:
         print("Already in sync. No files changed.")
