@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 03｜広告投資を見極める
+  short_description: 広告の役割・投資資格・評価期間・継続撤退条件を見極める
+  default_prompt: $evaluate-ad-investment を使って、この広告施策の役割、投資資格、評価指標、Signal、Guardrail、撤退条件を診断してください。
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true

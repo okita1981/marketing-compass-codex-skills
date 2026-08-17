@@ -1,0 +1,20 @@
+{
+  "name": "marketing-compass",
+  "interface": {
+    "displayName": "Marketing Compass"
+  },
+  "plugins": [
+    {
+      "name": "marketing-compass",
+      "source": {
+        "source": "local",
+        "path": "./plugins/marketing-compass"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: 思考を整理する7段の階段
+  short_description: 思考の段差を見抜き、構造から実行可能な行動へ整理するスキル
+  default_prompt: $thinking-staircase を使って、事実・解釈・感情・構造を分け、いま必要な判断と行動まで整理してください。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+policy:
+  allow_implicit_invocation: true

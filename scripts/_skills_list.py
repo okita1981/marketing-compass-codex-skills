@@ -1,6 +1,6 @@
-"""Single source of truth for the list of Claude Code skills this repo
-distributes, shared by scripts/verify-claude-code-skills.py (checks
-.claude/skills/) and scripts/verify-claude-code-plugin.py (checks plugin/).
+"""Single source of truth for the skills this repository distributes.
+
+Shared by the Codex and Claude Code sync/verification scripts.
 
 Mirrors the CLAUDE_CODE_SKILLS array in scripts/lib-sync-skills.sh, which is
 the equivalent source of truth for the two bash sync scripts. If you add,

@@ -1,0 +1,10 @@
+interface:
+  display_name: Marketing Compass 01｜売上の構造を解く
+  short_description: 売上構造を分解し、最大ボトルネックと動かすべき変数を特定
+  default_prompt: Use $diagnose-marketing-structure to diagnose what is actually constraining
+    this business before recommending marketing tactics.
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true
