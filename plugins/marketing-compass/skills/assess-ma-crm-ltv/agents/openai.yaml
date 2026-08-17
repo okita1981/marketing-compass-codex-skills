@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 05｜LTVを育てる
+  short_description: 自動化適合性・顧客関係・価値到達・選択の寿命を組み立てる
+  default_prompt: $assess-ma-crm-ltv を使って、MA導入可否、CRM・CSの役割、LTV形成要因、先に直す構造を診断してください。
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true

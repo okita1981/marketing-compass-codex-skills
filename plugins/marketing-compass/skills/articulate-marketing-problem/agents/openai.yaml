@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 00｜課題を言葉にする
+  short_description: 点在する現象をつなぎ、検証可能な課題として言語化する
+  default_prompt: $articulate-marketing-problem を使って、現象・数字・違和感・関係者の発言を整理し、検証可能な課題として言語化してください。
+  icon_small: assets/icon.svg
+  icon_large: assets/icon.svg
+  brand_color: '#173F5F'
+policy:
+  allow_implicit_invocation: true

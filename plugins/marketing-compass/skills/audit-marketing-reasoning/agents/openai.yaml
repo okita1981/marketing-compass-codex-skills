@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 07｜論理を確かめる
+  short_description: 因果・再現性・鮮度・実装条件から提案と分析を確かめる
+  default_prompt: $audit-marketing-reasoning を使って、このマーケティング提案または分析の因果、再現性、前提、情報鮮度、実装条件を監査してください。
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true

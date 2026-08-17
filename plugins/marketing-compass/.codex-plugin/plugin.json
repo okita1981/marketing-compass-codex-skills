@@ -1,0 +1,39 @@
+{
+  "name": "marketing-compass",
+  "version": "1.0.0",
+  "description": "A judgment framework for marketing: articulate the problem, diagnose revenue structure and the maximum bottleneck, design measurement, evaluate ad investment, design B2B growth, assess MA/CRM/LTV, design communications, and audit marketing reasoning.",
+  "author": {
+    "name": "Kousuke Okita / 沖田紘亮",
+    "url": "https://github.com/okita1981"
+  },
+  "homepage": "https://github.com/okita1981/marketing-compass-codex-skills",
+  "repository": "https://github.com/okita1981/marketing-compass-codex-skills",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "marketing",
+    "revenue",
+    "measurement",
+    "advertising",
+    "b2b",
+    "crm",
+    "ltv",
+    "communications",
+    "reasoning"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Marketing Compass",
+    "shortDescription": "売上・測定・広告・BtoB・LTV・接点・論理を動かす",
+    "longDescription": "マーケティング課題の言語化、売上構造と最大ボトルネックの診断、効果測定、広告投資、BtoB成長、MA・CRM・LTV、コミュニケーション、論理監査を9つの専門スキルで支援します。",
+    "developerName": "Kousuke Okita / 沖田紘亮",
+    "category": "Productivity",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "マーケティング課題を構造化し、最初に動かすべき変数を特定してください。",
+      "この施策のKGI・KPIと効果検証方法を設計してください。",
+      "このマーケティング提案の因果関係と実装条件を監査してください。"
+    ]
+  }
+}

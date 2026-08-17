@@ -1,0 +1,9 @@
+interface:
+  display_name: Marketing Compass 02｜成果を測る
+  short_description: 目的からKGI・KPI・検証方法・継続撤退条件まで組み立てる
+  default_prompt: $design-marketing-measurement を使って、この施策の目的、KGI、KPI、検証方法、Signal、Guardrailを設計してください。
+  icon_small: ./assets/icon.svg
+  icon_large: ./assets/icon.svg
+  brand_color: '#173B57'
+policy:
+  allow_implicit_invocation: true
