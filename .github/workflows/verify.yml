@@ -4,9 +4,10 @@ name: verify
 # no dependencies to install) on every push and pull request. This exists
 # to catch the failure mode the repo's own tooling was built to prevent:
 # skills/, .claude/skills/, plugin/marketing-compass/, plugin/thinking-staircase/,
-# and plugins/marketing-compass/ silently drifting apart, or a plugin
-# manifest becoming structurally invalid, without anyone running the
-# checks locally before merging. Also checks evals/ fixtures are
+# plugins/marketing-compass/, and plugins/thinking-staircase/ silently
+# drifting apart, or a plugin manifest becoming structurally invalid,
+# without anyone running the checks locally before merging. Also checks
+# evals/ fixtures are
 # well-formed (structure only — see evals/README.md for what that does
 # and does not cover; there is no automated model-grading run here).
 #
@@ -60,10 +61,10 @@ jobs:
       - name: Check Claude Code plugin packages are in sync with skills/
         run: bash scripts/sync-claude-code-plugin.sh --check
 
-      - name: Verify Codex plugin package
+      - name: Verify Codex plugin packages (marketing-compass, thinking-staircase)
         run: python3 scripts/verify-codex-plugin.py
 
-      - name: Check Codex plugin package is in sync with skills/
+      - name: Check Codex plugin packages are in sync with skills/
         run: python3 scripts/sync-codex-plugin.py --check
 
       - name: Verify eval fixtures (structure only — see evals/README.md)

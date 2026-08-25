@@ -1,5 +1,18 @@
 #!/usr/bin/env python3
-"""Synchronize canonical Codex skills into plugins/marketing-compass/skills."""
+"""Synchronize canonical Codex skills into the two Codex plugin packages.
+
+As of 2026-08-25 there are two Codex plugin packages, synced independently:
+
+  plugins/marketing-compass/  (8 Marketing Compass skills)
+  plugins/thinking-staircase/ (the general-purpose thinking-staircase skill)
+
+They are separate because thinking-staircase is not Marketing
+Compass-specific — same reason the Claude Code plugin under plugin/ is
+split into plugin/marketing-compass/ and plugin/thinking-staircase/. Which
+skill belongs to which package is defined once, in
+scripts/_skills_list.py, and shared by both ecosystems' sync/verify
+scripts.
+"""
 
 from __future__ import annotations
 
@@ -10,10 +23,18 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
-from _skills_list import SKILLS  # noqa: E402
+from _skills_list import (  # noqa: E402
+    MARKETING_COMPASS_PLUGIN_SKILLS,
+    THINKING_STAIRCASE_PLUGIN_SKILLS,
+)
+
+PLUGINS = {
+    "marketing-compass": MARKETING_COMPASS_PLUGIN_SKILLS,
+    "thinking-staircase": THINKING_STAIRCASE_PLUGIN_SKILLS,
+}
 
 SOURCE_ROOT = REPO_ROOT / "skills"
-TARGET_ROOT = REPO_ROOT / "plugins" / "marketing-compass" / "skills"
+PLUGINS_ROOT = REPO_ROOT / "plugins"
 PRODUCT_BLOCK = b"  products:\n  - chatgpt\n  - codex\n  - api\n  - atlas\n"
 
 
@@ -52,36 +73,58 @@ def normalize_package(skill_root: Path) -> None:
         model_file.write_bytes(content)
 
 
+def sync_plugin(plugin_name: str, skill_names: list[str], check_only: bool) -> bool:
+    """Sync one Codex plugin package. Returns True if it was (or would be)
+    changed."""
+    target_root = PLUGINS_ROOT / plugin_name / "skills"
+
+    stale = [name for name in skill_names if not tree_matches(SOURCE_ROOT / name, target_root / name)]
+    extras = (
+        sorted(path.name for path in target_root.iterdir() if path.is_dir() and path.name not in skill_names)
+        if target_root.is_dir()
+        else []
+    )
+
+    if check_only:
+        if stale or extras:
+            print(f"[{plugin_name}] Codex plugin is out of sync.")
+            if stale:
+                print(f"[{plugin_name}] Stale or missing:", ", ".join(stale))
+            if extras:
+                print(f"[{plugin_name}] Unexpected:", ", ".join(extras))
+            return True
+        return False
+
+    target_root.mkdir(parents=True, exist_ok=True)
+    for name in extras:
+        shutil.rmtree(target_root / name)
+    for name in stale:
+        destination = target_root / name
+        if destination.exists():
+            shutil.rmtree(destination)
+        shutil.copytree(SOURCE_ROOT / name, destination)
+        normalize_package(destination)
+        print(f"[{plugin_name}] Synced {name}")
+    return bool(stale or extras)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
 
-    stale = [name for name in SKILLS if not tree_matches(SOURCE_ROOT / name, TARGET_ROOT / name)]
-    extras = sorted(path.name for path in TARGET_ROOT.iterdir() if path.is_dir() and path.name not in SKILLS)
+    any_changed = False
+    for plugin_name, skill_names in PLUGINS.items():
+        changed = sync_plugin(plugin_name, skill_names, args.check)
+        any_changed = any_changed or changed
 
     if args.check:
-        if stale or extras:
-            print("Codex plugin is out of sync.")
-            if stale:
-                print("Stale or missing:", ", ".join(stale))
-            if extras:
-                print("Unexpected:", ", ".join(extras))
+        if any_changed:
             return 1
         print("Codex plugin skill copies are in sync with skills/.")
         return 0
 
-    TARGET_ROOT.mkdir(parents=True, exist_ok=True)
-    for name in extras:
-        shutil.rmtree(TARGET_ROOT / name)
-    for name in stale:
-        destination = TARGET_ROOT / name
-        if destination.exists():
-            shutil.rmtree(destination)
-        shutil.copytree(SOURCE_ROOT / name, destination)
-        normalize_package(destination)
-        print(f"Synced {name}")
-    if not stale and not extras:
+    if not any_changed:
         print("Already in sync. No files changed.")
     return 0
 
