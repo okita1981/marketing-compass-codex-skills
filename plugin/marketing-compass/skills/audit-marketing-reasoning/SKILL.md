@@ -113,6 +113,10 @@ Use [output-contract.md](references/output-contract.md) for the final structure.
 - Use `assess-ma-crm-ltv` first for MA, CRM, retention, lifecycle, or LTV suitability.
 - Use this skill first when the artifact's logic, evidence, generalizability, freshness, or implementation assumptions are themselves under review.
 
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, use the label translations in [references/output-contract.md](references/output-contract.md); otherwise use the English labels as written there. Keep the field structure and order identical regardless of language.
+
 ## Guardrails
 
 - Do not diagnose a person's motives, competence, or psychology from a proposal.

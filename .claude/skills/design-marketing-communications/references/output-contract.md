@@ -7,6 +7,7 @@
 3. Full design
 4. Decision states
 5. Quality checks
+6. Output language
 
 ## 1. Missing-input behavior
 
@@ -101,3 +102,58 @@ Uncertainty and exceptions:
 - Buzz or UGC is not guaranteed.
 - Desired and adverse signals are defined.
 - “What not to do” is specific.
+
+## 6. Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, translate the field labels above using the table below; keep the field structure and order unchanged. `Signal`, `Counter-signal`, and `Guardrail` are used as-is in Japanese (the established Marketing Compass convention — see `canonical/marketing-compass-canonical-v1.0.md` §7.5, §14), not translated. `Paid`/`Earned`/`Shared`/`Owned` (PESO) are also used as-is.
+
+| English label | 日本語ラベル |
+|---|---|
+| Core communication problem | コミュニケーション上の核心課題 |
+| Current → desired state | 現在の状態→目指す状態 |
+| Barrier | 障壁 |
+| Meaning to reconstruct | 再構成すべき意味 |
+| Proof | 証拠 |
+| Primary touchpoint role | 主要な接点の役割 |
+| Handoff | 受け渡し先 |
+| Do not do | しないこと |
+| Decision owner, scope, and deadline | 決定権者・適用範囲・期限 |
+| Customer and buying context | 顧客と購買の文脈 |
+| Demand state | 需要の状態 |
+| Current customer state | 現在の顧客状態 |
+| Desired next state | 目指す次の状態 |
+| Primary barrier | 主要な障壁 |
+| Customer subject and context | 顧客の主体性と文脈 |
+| Choice reason | 選択理由 |
+| Proof or experience | 証拠または体験 |
+| What not to promise | 約束しないこと |
+| Function role | 機能の役割 |
+| Story role | ストーリーの役割 |
+| Emotion role | 感情の役割 |
+| Logic role | 論理の役割 |
+| Paid role and handoff | Paidの役割と受け渡し先 |
+| Earned role and handoff | Earnedの役割と受け渡し先 |
+| Shared role and handoff | Sharedの役割と受け渡し先 |
+| Owned role and handoff | Ownedの役割と受け渡し先 |
+| Offline/digital complement | オフライン／デジタルの補完関係 |
+| Expectation created | 生まれる期待 |
+| Experience that must fulfill it | それを満たすべき体験 |
+| Downstream owner | 後工程の担当者 |
+| Confirmed facts | 確認済みの事実 |
+| Interpretations | 解釈 |
+| Hypotheses | 仮説 |
+| Unknowns | 未知の点 |
+| Evidence level | 証拠レベル |
+| Review window | 見直し期間 |
+| What not to communicate or optimize | 発信・最適化しないこと |
+| Uncertainty and exceptions | 不確実性と例外 |
+
+Decision state values (§4):
+
+| English | 日本語 |
+|---|---|
+| Execute | 実行 |
+| Small reversible test | 小規模な可逆テスト |
+| Hold | 保留 |
+| Redesign | 再設計 |
+| Stop | 中止 |

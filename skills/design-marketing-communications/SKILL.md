@@ -183,6 +183,10 @@ Use the compact or full structure in [references/output-contract.md](references/
 - Signal, counter-signal, guardrail, and review point
 - What not to communicate or optimize
 
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, use the label translations in [references/output-contract.md](references/output-contract.md); otherwise use the English labels as written there. Keep the field structure and order identical regardless of language.
+
 ## Guardrails
 
 - Do not select channels before defining the state transition.

@@ -117,3 +117,38 @@ Use these as the complete audit:
 - Peter M. Senge, *The Fifth Discipline* (1990): interrelationships, feedback, and systems thinking
 - Adele Diamond, “Executive Functions” (2013): inhibition, working memory, and cognitive flexibility
 - Keith E. Stanovich, Richard F. West, and Maggie E. Toplak, “Myside Bias, Rational Thinking, and Intelligence” (2013): relative independence of myside bias and intelligence
+
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, translate labels using the tables below; keep the structure and order unchanged.
+
+The seven levels (already established in this repository's README as「反応・観察・因果・検証・自己点検・構造・戦略的運用」):
+
+| English | 日本語 |
+|---|---|
+| Reaction | 反応 |
+| Observation | 観察 |
+| Causality | 因果 |
+| Validation | 検証 |
+| Self-check | 自己点検 |
+| Structure | 構造 |
+| Strategic operation | 戦略的運用 |
+
+Compact answer structure (SKILL.md “Return an economical answer”):
+
+| English label | 日本語ラベル |
+|---|---|
+| Core | 核心 |
+| Current level | 現在の段 |
+| Missing move | 不足している移行 |
+| Reorganized thought | 再構成した思考 |
+| Action | 次の行動 |
+
+Full seven-level audit table columns:
+
+| English | 日本語 |
+|---|---|
+| Level | 段 |
+| What the input says | 入力が示していること |
+| What is missing | 不足していること |
+| Useful question | 有効な問い |

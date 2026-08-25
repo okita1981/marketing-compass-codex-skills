@@ -126,6 +126,10 @@ Use the compact or full form in [references/output-contract.md](references/outpu
 - Signal, counter-signal, guardrail, review window, and action
 - The minimum next measurement step
 
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, use the label translations in [references/output-contract.md](references/output-contract.md); otherwise use the English labels as written there. Keep the field structure and order identical regardless of language.
+
 ## Guardrails
 
 - Do not manufacture baselines, thresholds, lift, or power assumptions.

@@ -147,6 +147,10 @@ Use the compact output in [references/output-contract.md](references/output-cont
 
 Adapt depth to the request. Do not force every field into a simple answer.
 
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, use the label translations in [references/output-contract.md](references/output-contract.md); otherwise use the English labels as written there. Keep the field structure and order identical regardless of language.
+
 ## Guardrails
 
 - Do not attribute revenue change to one tactic without a defensible counterfactual.

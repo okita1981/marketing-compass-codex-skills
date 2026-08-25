@@ -7,6 +7,7 @@
 3. Full diagnosis
 4. Decision states
 5. Quality checks
+6. Output language
 
 ## 1. Missing-input behavior
 
@@ -95,3 +96,52 @@ Uncertainty and exceptions:
 - Strategic LTV is not calculated from an uncalibrated tree.
 - Desired and adverse customer signals are included.
 - “What not to do” is specific.
+
+## 6. Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, translate the field labels above using the table below; keep the field structure and order unchanged. `Signal`, `Counter-signal`, and `Guardrail` are used as-is in Japanese (the established Marketing Compass convention — see `canonical/marketing-compass-canonical-v1.0.md` §7.5, §14), not translated. `MA`, `CRM`, `CS`, and `LTV` are also used as-is.
+
+| English label | 日本語ラベル |
+|---|---|
+| MA/CRM judgment | MA・CRM判定 |
+| Major blocker | 主要な阻害要因 |
+| Primary customer-state bottleneck | 顧客状態上の最大ボトルネック |
+| Role that should act | 対応すべき役割 |
+| LTV view | LTVの見方 |
+| Next move | 次の一手 |
+| Do not do | しないこと |
+| Decision owner, scope, and deadline | 決定権者・適用範囲・期限 |
+| Business model and cohort | ビジネスモデルとコホート |
+| Recurring need or decision | 継続的な需要・意思決定 |
+| Major blockers | 主要な阻害要因 |
+| Supporting conditions | 補助的な条件 |
+| Secondary hypothesis | 第二候補仮説 |
+| Strategic CRM responsibility | 戦略的CRMの責任範囲 |
+| Operational CRM responsibility | 運用的CRMの責任範囲 |
+| MA responsibility | MAの責任範囲 |
+| CS responsibility | CSの責任範囲 |
+| LTV view used | 採用したLTVの見方 |
+| Accounting definition and assumptions | 会計上の定義と前提 |
+| Strategic LTV formation drivers | 戦略的LTVを形成する要因 |
+| Acquisition economics | 獲得コストの経済性 |
+| Automated action | 自動化されたアクション |
+| Human-intervention point | 人間が介入するポイント |
+| Suppression and escalation | 抑制とエスカレーション |
+| Confirmed facts | 確認済みの事実 |
+| Proxies | 代理指標 |
+| Hypotheses | 仮説 |
+| Unknowns | 未知の点 |
+| Evidence level | 証拠レベル |
+| Review window | 見直し期間 |
+| What to fix first | 最初に直すべきこと |
+| Uncertainty and exceptions | 不確実性と例外 |
+
+Decision state values (§4):
+
+| English | 日本語 |
+|---|---|
+| Adopt or expand | 導入・拡大 |
+| Conditional pilot | 条件付き試行 |
+| Hold | 保留 |
+| Reduce or redesign | 縮小・再設計 |
+| Adverse | 悪影響 |
