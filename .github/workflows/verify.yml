@@ -6,7 +6,9 @@ name: verify
 # skills/, .claude/skills/, plugin/marketing-compass/, plugin/thinking-staircase/,
 # and plugins/marketing-compass/ silently drifting apart, or a plugin
 # manifest becoming structurally invalid, without anyone running the
-# checks locally before merging.
+# checks locally before merging. Also checks evals/ fixtures are
+# well-formed (structure only — see evals/README.md for what that does
+# and does not cover; there is no automated model-grading run here).
 #
 # This workflow does NOT run `claude plugin validate` (the official
 # Claude Code CLI validator) — that requires installing and authenticating
@@ -63,3 +65,6 @@ jobs:
 
       - name: Check Codex plugin package is in sync with skills/
         run: python3 scripts/sync-codex-plugin.py --check
+
+      - name: Verify eval fixtures (structure only — see evals/README.md)
+        run: python3 scripts/verify-evals.py

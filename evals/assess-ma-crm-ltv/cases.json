@@ -1,0 +1,41 @@
+{
+  "skill": "assess-ma-crm-ltv",
+  "cases": [
+    {
+      "id": "assess-ma-crm-ltv-01",
+      "language": "ja",
+      "input": "解約率が高いです。MAツールを導入してリテンションメールを増やすべきですか？",
+      "assertions": [
+        "Assesses major blockers (e.g. whether value realization, product fit, or a structural issue is driving churn) before recommending a supporting tactic like more email.",
+        "Names one primary customer-state bottleneck rather than assuming 'more contact' is the fix by default.",
+        "Does not treat MA/automated email volume as a substitute for demand, value realization, or a structural retention problem.",
+        "If more contact is recommended, specifies its customer benefit, entry condition, exit condition, and suppression rule — not just 'send more emails'.",
+        "'What not to do' is specific if included (e.g. warns against over-contacting churn-risk customers who have no unmet need being addressed)."
+      ]
+    },
+    {
+      "id": "assess-ma-crm-ltv-02",
+      "language": "ja",
+      "input": "顧客のLTVを計算したいのですが、どうやればいいですか？",
+      "assertions": [
+        "Distinguishes accounting LTV, acquisition economics, and strategic LTV as different views rather than giving one formula as 'the' LTV.",
+        "Asks for or states the required inputs (cohort, period, margin, service-cost definitions) rather than producing a number from undefined assumptions.",
+        "Does not calculate a strategic LTV figure from an uncalibrated hypothesis tree.",
+        "Labels any assumption it cannot verify as unknown rather than silently assuming a plausible-sounding number.",
+        "States what business decision the LTV figure is meant to support, since the appropriate LTV view depends on that."
+      ]
+    },
+    {
+      "id": "assess-ma-crm-ltv-03",
+      "language": "en",
+      "input": "Should we buy a CRM before we've validated product-market fit?",
+      "assertions": [
+        "Assesses whether the major blocker (unvalidated product-market fit / unclear recurring need) should be resolved before a CRM purchase, rather than answering the tool question in isolation.",
+        "Distinguishes strategic CRM, operational CRM, MA, and CS responsibilities rather than treating 'CRM' as one undifferentiated thing.",
+        "Does not recommend adopting or expanding tooling as a way to manufacture demand or product-market fit that doesn't yet exist.",
+        "If a conditional pilot is suggested instead of full adoption, states what would need to be observed to justify expanding it.",
+        "'What not to do' is specific if included."
+      ]
+    }
+  ]
+}

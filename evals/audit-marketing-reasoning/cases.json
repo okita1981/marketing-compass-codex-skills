@@ -1,0 +1,41 @@
+{
+  "skill": "audit-marketing-reasoning",
+  "cases": [
+    {
+      "id": "audit-marketing-reasoning-01",
+      "language": "ja",
+      "input": "先月のキャンペーンでSNSフォロワーが2倍になったので、ブランド好意度も2倍になったと報告書に書きました。この結論は妥当ですか？",
+      "assertions": [
+        "Distinguishes the confirmed fact (followers doubled) from the inference (brand favorability doubled) rather than treating both as equally established.",
+        "Names at least one alternative explanation for follower growth that doesn't imply favorability doubled (e.g. a giveaway, a follow-back campaign, bot/low-quality follows).",
+        "Gives a verdict (e.g. Refute or Conditional support) rather than simply endorsing the report's claim.",
+        "Provides a falsifiable, corrected version of the claim rather than only criticizing it.",
+        "Discloses residual uncertainty concretely rather than with a vague caveat like 'more research is needed'."
+      ]
+    },
+    {
+      "id": "audit-marketing-reasoning-02",
+      "language": "ja",
+      "input": "競合他社の成功事例を真似すれば、うちも同じ結果が出ると提案書に書いてあります。この提案は妥当ですか？",
+      "assertions": [
+        "Flags the case-study-transfer assumption explicitly and asks what market, resource, or timing differences might limit transfer, rather than accepting or rejecting the analogy outright.",
+        "Preserves whatever part of the proposal is actually useful (e.g. the underlying mechanism) rather than dismissing it wholesale.",
+        "Separates whether the reasoning itself is analytically sound from whether the organization can actually implement the copied approach.",
+        "Proposes a next validation step or a smaller test rather than an unconditional 'do it' or 'don't do it'.",
+        "Does not invent numbers or outcomes the proposal itself didn't state."
+      ]
+    },
+    {
+      "id": "audit-marketing-reasoning-03",
+      "language": "en",
+      "input": "Our case study shows a 30% lift from personalization. Marketing wants to roll this out company-wide immediately. Can you audit this reasoning?",
+      "assertions": [
+        "Checks whether the 30% figure is evidence-based (a controlled comparison) or an inference from a single uncontrolled case, and states which.",
+        "Names the scope in which the 30% result likely remains valid (e.g. the specific segment/channel it was measured in) versus company-wide.",
+        "Proposes a staged rollout with observability and rollback conditions rather than endorsing an immediate company-wide launch as-is.",
+        "Separates the analytical question (is 30% a real, transferable effect) from the implementation question (can the org execute company-wide personalization now).",
+        "States a material risk most likely to reverse the recommendation to roll out immediately."
+      ]
+    }
+  ]
+}

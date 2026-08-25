@@ -224,7 +224,9 @@ plugins/marketing-compass/ 上記9スキルを束ねたCodexプラグイン
 .claude/skills/            上記9スキルすべてをClaude Code project skill向けに複製したコピー
 plugin/marketing-compass/  Marketing Compass 8スキルをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
 plugin/thinking-staircase/ 思考を整理する7段の階段のみを収録した、独立したClaude Codeプラグイン
-scripts/                   Codex・Claude Code各パッケージの生成・同期・検証スクリプト
+scripts/                   Codex・Claude Code各パッケージの生成・同期・検証スクリプト、およびeval fixtureの構造検証スクリプト
+evals/                     各スキルの回帰テスト用フィクスチャ（入力例＋チェック項目。詳細はevals/README.md）
+.github/workflows/         CI（push・PRごとにsync/verifyスクリプト一式を実行）
 ```
 
 `skills/`配下の各スキルは次を含みます。
@@ -242,6 +244,11 @@ assets/icon.svg      スキル固有アイコン
 SKILL.md       skills/<スキル名>/SKILL.md と同一内容
 references/    skills/<スキル名>/references/ と同一内容
 ```
+
+## 品質保証
+
+- **CI**：[`.github/workflows/verify.yml`](.github/workflows/verify.yml)がpush・PRごとに、全パッケージのsync/verifyスクリプトとeval fixtureの構造検証を実行します（バッジは冒頭参照）。
+- **回帰テスト用フィクスチャ**：[`evals/`](evals)配下に、9スキル各3件・計27件の入力例とチェック項目を用意しています。プロンプトを改訂した際の手動回帰確認に使えます。自動でモデルへ送信・採点する仕組みはまだ含まれていません（詳細は[`evals/README.md`](evals/README.md)）。
 
 ## 適用範囲
 
