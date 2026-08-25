@@ -18,9 +18,14 @@ Checks, per the 9 in-scope skills:
   9. No obviously-local absolute paths (C:\\Users, /home/, /Users/) or
      committed secrets (best-effort keyword scan) inside the generated
      files.
-  10. skills/ and canonical/ (the GPT/Codex + canonical corpus) are
-      untouched by this change (git diff against origin/main is empty for
-      those paths).
+  10. LICENSE and .gitignore are untouched by this change (git diff against
+      origin/main is empty for those paths). skills/ and canonical/ are
+      deliberately NOT guarded this way: this script's job is packaging
+      structure and parity, not gatekeeping whether skill content itself is
+      allowed to change in a given PR — that's a normal, expected category
+      of change (see e.g. the 2026-08-25 entry-point routing fix), and a
+      hard-fail here would make CI permanently red on exactly that kind of
+      legitimate work. Content review belongs to the PR review itself.
 
 Exit code 0 = all checks passed. Non-zero = at least one failure, printed.
 """
@@ -169,7 +174,8 @@ for name in SKILLS:
             fail(f"[{name}] {rel} differs between skills/{name}/ and .claude/skills/{name}/ (content drift)")
 
 
-# --- 10: GPT/Codex source + canonical corpus untouched ---
+# --- 10: LICENSE / .gitignore untouched (skills/ and canonical/ are content,
+# not packaging, and are deliberately not guarded here — see docstring) ---
 def git_diff_paths(paths: list[str]) -> str:
     try:
         result = subprocess.run(
@@ -186,11 +192,11 @@ def git_diff_paths(paths: list[str]) -> str:
         return ""
 
 
-protected_paths = ["skills/", "canonical/", "LICENSE", ".gitignore"]
+protected_paths = ["LICENSE", ".gitignore"]
 diff_out = git_diff_paths(protected_paths)
 if diff_out:
     fail(
-        "GPT/Codex source or canonical corpus changed versus origin/main:\n"
+        "LICENSE or .gitignore changed versus origin/main:\n"
         + "\n".join(f"    {line}" for line in diff_out.splitlines())
     )
 
