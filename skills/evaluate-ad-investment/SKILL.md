@@ -1,6 +1,6 @@
 ---
 name: evaluate-ad-investment
-description: "Evaluate whether an advertising plan, channel, budget, brand campaign, performance campaign, TV campaign, or media reduction qualifies as an investment and under what conditions. Use when a user asks whether advertising is worth it, how to compare brand and performance advertising, whether to cut or increase media, what return and time horizon to use, how to classify current-value, non-current-value, or organizational advertising, or how to define incremental return, residual value, safe floors, signals, guardrails, and withdrawal rules."
+description: "Evaluate whether an advertising plan, channel, budget, brand campaign, performance campaign, TV campaign, or media reduction qualifies as an investment and under what conditions. Use when a user asks whether advertising is worth it, how to compare brand and performance advertising, whether to cut or increase media, what return and time horizon to use, how to classify current-value, non-current-value, or organizational advertising, or how to define incremental return, residual value, safe floors, signals, guardrails, and withdrawal rules. 「広告のCPAや獲得単価が上がった」「広告予算を増やすべきか止めるべきか」「ブランド広告と獲得広告をどう比較するか」「TVCMを打ちたいが効果測定できるか」「リーチ・インプレッション・指名検索をどう評価するか」など、広告そのものへの投資可否・評価期間・撤退条件が論点の短い相談に使う。広告以外を含む最大制約がまだ分からない場合は、先にdiagnose-marketing-structureで構造分解する。"
 ---
 
 # Evaluate Advertising Investment

@@ -7,9 +7,9 @@ name: verify
 # plugins/marketing-compass/, and plugins/thinking-staircase/ silently
 # drifting apart, or a plugin manifest becoming structurally invalid,
 # without anyone running the checks locally before merging. Also checks
-# evals/ fixtures are
-# well-formed (structure only — see evals/README.md for what that does
-# and does not cover; there is no automated model-grading run here).
+# evals/ and evals/trigger-routing/ fixtures are well-formed (structure
+# only — see each directory's own README.md for what that does and does
+# not cover; there is no automated model-grading or live-trigger run here).
 #
 # This workflow does NOT run `claude plugin validate` (the official
 # Claude Code CLI validator) — that requires installing and authenticating
@@ -69,3 +69,6 @@ jobs:
 
       - name: Verify eval fixtures (structure only — see evals/README.md)
         run: python3 scripts/verify-evals.py
+
+      - name: Verify trigger-routing fixtures (structure only — see evals/trigger-routing/README.md)
+        run: python3 scripts/verify-trigger-routing.py

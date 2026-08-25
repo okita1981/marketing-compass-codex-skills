@@ -7,7 +7,11 @@ well-formed:
 
   1. evals/<name>/cases.json exists for exactly the 9 skills in
      scripts/_skills_list.py (SKILLS) — no missing skill, no stray extra
-     directory for a skill that doesn't exist.
+     directory for a skill that doesn't exist. evals/trigger-routing/ is a
+     deliberate exception: it holds entry-point/routing fixtures that are
+     not owned by a single skill (see NON_SKILL_EVAL_DIRS below and
+     scripts/verify-trigger-routing.py, which checks that directory's own
+     structure separately).
   2. Each cases.json is valid JSON with a `skill` field matching its
      directory name and a non-empty `cases` array.
   3. Each case has a unique `id` (unique within its file), a `language` of
@@ -29,6 +33,11 @@ from _skills_list import SKILLS  # noqa: E402 (see scripts/_skills_list.py)
 EVALS_ROOT = REPO_ROOT / "evals"
 EXPECTED_CASES_PER_SKILL = 3
 
+# evals/ subdirectories that intentionally are NOT one-per-skill fixture
+# sets, and so are exempt from the per-skill directory check below. Each
+# has its own dedicated verify script.
+NON_SKILL_EVAL_DIRS = {"trigger-routing"}
+
 failures: list[str] = []
 
 
@@ -37,6 +46,7 @@ def fail(msg: str) -> None:
 
 
 actual_dirs = {p.name for p in EVALS_ROOT.iterdir() if p.is_dir()} if EVALS_ROOT.is_dir() else set()
+actual_dirs -= NON_SKILL_EVAL_DIRS
 expected_dirs = set(SKILLS)
 
 for missing in sorted(expected_dirs - actual_dirs):

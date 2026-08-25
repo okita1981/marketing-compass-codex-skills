@@ -2,6 +2,10 @@
 
 All notable changes to the `marketing-compass` Claude Code plugin are documented here. Versions follow [Semantic Versioning](https://semver.org).
 
+## 2.0.1 — 2026-08-25
+
+**Patch.** Frontmatter `description` improved for all 8 skills to add Japanese trigger vocabulary and explicit routing-boundary language, so short Japanese consultations are more reliably routed to the correct entry-point skill (00 → 01 → 02–07). No skill was added, removed, or renamed; no `SKILL.md` body, `references/`, or judgment logic changed — see the parent repository's PR for the full rationale and the `evals/trigger-routing/` fixture set added alongside this change. Treated as a patch (not minor) release: this corrects previously under-specified routing metadata to match behavior the skills' own bodies already documented, rather than adding new skill capability.
+
 ## 2.0.0 — 2026-08-25
 
 **Breaking.** `marketing-compass:thinking-staircase` is removed from this plugin. Thinking Staircase is a general-purpose thinking-navigation skill, not specific to Marketing Compass, and now ships as its own plugin at [`../thinking-staircase/`](../thinking-staircase) (`thinking-staircase:thinking-staircase`). Users who need it should install that plugin as well; there is no automatic migration. This directory also moved from `plugin/` to `plugin/marketing-compass/` as part of the same change — update any `--plugin-dir` or marketplace-submission path accordingly.

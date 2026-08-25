@@ -1,6 +1,6 @@
 ---
 name: design-marketing-measurement
-description: "Design or audit marketing measurement systems, KPI trees, effect measurement, experiments, MMM interpretation, and continuation or withdrawal rules. Use when a user asks what to measure, how to connect a marketing objective to KGI and KPI, whether sales or ROAS is an appropriate success metric, how to choose among A/B tests, Geo tests, surveys, logs, MMM, or proxy signals, how much causal confidence a result supports, or how to define Baseline, Desired Signal, Counter-signal, Guardrail, review window, and action thresholds."
+description: "Design or audit marketing measurement systems, KPI trees, effect measurement, experiments, MMM interpretation, and continuation or withdrawal rules. Use when a user asks what to measure, how to connect a marketing objective to KGI and KPI, whether sales or ROAS is an appropriate success metric, how to choose among A/B tests, Geo tests, surveys, logs, MMM, or proxy signals, how much causal confidence a result supports, or how to define Baseline, Desired Signal, Counter-signal, Guardrail, review window, and action thresholds. 「CPAやCVR、CACをどう定義し検証するか」「KPIやKGIをどう設計するか」「効果測定や指標設計の仕組みそのものを作りたい」「継続・撤退の基準をどう置くか」という短い相談に使う。「CPAが悪化した原因を知りたい」のように原因診断そのものが論点なら、まずdiagnose-marketing-structure（広告文脈ならevaluate-ad-investment）を優先する。"
 ---
 
 # Design Marketing Measurement

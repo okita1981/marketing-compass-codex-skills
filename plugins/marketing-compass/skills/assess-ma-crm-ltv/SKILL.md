@@ -1,6 +1,6 @@
 ---
 name: assess-ma-crm-ltv
-description: "Assess whether marketing automation, CRM, lifecycle messaging, customer success, retention programs, or LTV initiatives fit the business and what must be fixed first. Use when a user asks whether to introduce or strengthen MA, why CRM is not increasing revenue, how to separate strategic CRM, operational CRM, MA, and CS, why retention or renewal is weak, how to improve LTV, how to design lifecycle journeys or automation, or how to distinguish accounting LTV, acquisition economics, and the strategic lifetime of customer choice."
+description: "Assess whether marketing automation, CRM, lifecycle messaging, customer success, retention programs, or LTV initiatives fit the business and what must be fixed first. Use when a user asks whether to introduce or strengthen MA, why CRM is not increasing revenue, how to separate strategic CRM, operational CRM, MA, and CS, why retention or renewal is weak, how to improve LTV, how to design lifecycle journeys or automation, or how to distinguish accounting LTV, acquisition economics, and the strategic lifetime of customer choice. 「解約率が高い」「継続率・更新率が下がっている」「LTVをどう上げるか」「MAを導入すべきか」「CRMを入れたのに効果が出ない」「オンボーディングや顧客の定着をどう設計するか」など、既存顧客の継続・活用・LTV形成に関する短い相談に使う。"
 ---
 
 # Assess MA, CRM, and LTV
