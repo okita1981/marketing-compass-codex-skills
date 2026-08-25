@@ -5,9 +5,22 @@ description: "Diagnose ambiguous marketing, growth, revenue, acquisition, retent
 
 # Diagnose Marketing Structure
 
-Treat this skill as the entry point to Marketing Compass. Diagnose the constraint before generating tactics. Do not assume the channel named by the user is the actual problem.
+This skill assumes the problem is already bounded and testable. Diagnose the constraint before generating tactics. Do not assume the channel named by the user is the actual problem.
 
 Read [references/core-principles.md](references/core-principles.md) for every substantive diagnosis. Read [references/diagnostic-model.md](references/diagnostic-model.md) when mapping the business, selecting equations, or comparing bottlenecks. Read [references/output-contract.md](references/output-contract.md) before returning a full diagnosis or requesting missing information.
+
+## Confirm the problem is already articulated
+
+Before diagnosing, check whether the request is a single, bounded, testable problem rather than a raw collection of symptoms.
+
+Route to `articulate-marketing-problem` first, instead of diagnosing here, when any of the following holds:
+
+- The user or different stakeholders describe conflicting or unrelated symptoms without a stated connection.
+- The request already jumps to a solution (ads, CRM, MA, reorganization) without a stated condition that solution is meant to change.
+- Metrics conflict, definitions may have changed, or the underlying data has not been inspected.
+- No one has yet stated what decision this is meant to inform, or by when.
+
+If the problem is already a single, testable statement with a stated decision and deadline, proceed directly.
 
 ## Establish the decision
 
@@ -112,6 +125,7 @@ Return one of:
 
 Route to a specialist domain only after stating why:
 
+- Problem still unbounded, conflicting symptoms, or no stated decision → articulate the problem (see above; return here once the problem is defined)
 - Measurement, KPI, MMM, experiments, Signals/Guardrails → marketing measurement
 - Current-value, non-current-value, structural advertising → advertising investment
 - ICP, deals, meetings, internal approval, downloaded materials → B2B growth
