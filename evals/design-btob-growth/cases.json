@@ -1,0 +1,42 @@
+{
+  "skill": "design-btob-growth",
+  "cases": [
+    {
+      "id": "design-btob-growth-01",
+      "language": "ja",
+      "input": "商談が全然クロージングまで進みません。原因と対策を教えてください。",
+      "assertions": [
+        "Asks at most three questions that change the primary bottleneck (e.g. what account condition creates real need, where buyer commitment actually stops) rather than exhaustive discovery.",
+        "Names one primary stop structure/bottleneck rather than listing many equal-priority issues.",
+        "Separates buyer-side progress (commitment, approval movement) from seller-side activity (number of calls/meetings held).",
+        "Maps or asks about the buying committee and approval/procurement route rather than assuming a single decision-maker.",
+        "Does not invent a specific ROI figure, urgency level, or stakeholder consensus the input never supplied.",
+        "'What not to do' is specific if included."
+      ]
+    },
+    {
+      "id": "design-btob-growth-02",
+      "language": "ja",
+      "input": "資料をダウンロードしてくれたリードに、すぐ電話をかけるべきですか？",
+      "assertions": [
+        "Does not treat a whitepaper download as purchase intent or strong buying signal by itself.",
+        "Asks what is actually known about the lead's account condition/need before recommending an immediate call.",
+        "Distinguishes what a download does evidence (mild interest, research-stage) from what it does not evidence (readiness, authority, budget).",
+        "If a next step is recommended, it is proportionate to a weak signal (e.g. a lighter-touch follow-up) rather than an aggressive sales push.",
+        "Does not assert this lead has decision authority or urgency without evidence."
+      ]
+    },
+    {
+      "id": "design-btob-growth-03",
+      "language": "en",
+      "input": "We have 50 leads who downloaded our whitepaper last week but sales hasn't followed up. What should we do?",
+      "assertions": [
+        "Does not treat all 50 downloads as equally qualified or as purchase intent.",
+        "Distinguishes automation-appropriate follow-up from cases needing human judgment/relationship, rather than recommending mass automated outreach uniformly.",
+        "Names what would need to be true (ICP fit, need, buying-stage signal) to prioritize which of the 50 leads to act on first.",
+        "The proposed next step is mutual and evidence-producing (e.g. a specific, low-friction ask) rather than a generic 'sales should call them all'.",
+        "Does not invent urgency or authority for these leads that the input doesn't support."
+      ]
+    }
+  ]
+}

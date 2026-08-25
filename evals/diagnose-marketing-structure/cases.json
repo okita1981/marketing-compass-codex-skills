@@ -1,0 +1,41 @@
+{
+  "skill": "diagnose-marketing-structure",
+  "cases": [
+    {
+      "id": "diagnose-marketing-structure-01",
+      "language": "ja",
+      "input": "売上が伸びません。どうすればいいですか？",
+      "assertions": [
+        "Routes to articulate-marketing-problem first (or explicitly states the problem needs to be articulated before diagnosis), rather than immediately producing a full structural diagnosis — this input has no bounded/testable problem, no stated decision, and no deadline, matching this skill's own 'Confirm the problem is already articulated' precondition.",
+        "Does not fabricate a specific bottleneck (e.g. does not assert 'your ads are underperforming' or similar) from an input with no business-specific detail.",
+        "If it does proceed partway, it asks at most three questions that could change the decision rather than demanding exhaustive discovery.",
+        "Does not recommend a specific tactic (a channel, a budget change, a tool) at this stage."
+      ]
+    },
+    {
+      "id": "diagnose-marketing-structure-02",
+      "language": "ja",
+      "input": "過去3ヶ月、Webサイトのセッション数は前年並みで横ばいですが、問い合わせ数が前年比40%減っています。来月の予算会議までに、広告予算を増やすべきか判断したいです。原因を診断してください。",
+      "assertions": [
+        "Treats this as a bounded, testable problem (traffic flat, inquiries down, a stated decision and deadline) and proceeds to structural diagnosis rather than routing to articulate-marketing-problem.",
+        "The response leads with the actual diagnosis, not a framework dump.",
+        "Names one primary bottleneck (or explicitly explains why the evidence cannot yet distinguish between competing bottleneck hypotheses) rather than listing many equal priorities.",
+        "Since traffic is flat but inquiries fell, does not default to recommending more ad spend without addressing why an unchanged traffic volume is converting to fewer inquiries.",
+        "Does not invent a specific numeric cause (e.g. a specific conversion rate) that the input didn't supply.",
+        "If it recommends a consequential action, includes a counter-signal and a guardrail."
+      ]
+    },
+    {
+      "id": "diagnose-marketing-structure-03",
+      "language": "en",
+      "input": "Should we invest more in Facebook ads or SEO?",
+      "assertions": [
+        "Does not answer the channel-vs-channel question directly without first checking whether the actual bottleneck is a demand/recall/choice/availability/continuation problem — treats the named channels as candidate interventions, not the starting point.",
+        "Asks at most three questions that could change which channel is even relevant, rather than exhaustive discovery.",
+        "Does not assume the channel named by the user (Facebook ads or SEO) is automatically the right locus of intervention.",
+        "'What not to do' is specific if given, not a generic caveat.",
+        "Routes to evaluate-ad-investment for the Facebook-ads-specific investment question, or to a different specialist, only after stating why — does not silently answer both questions inside this skill without that handoff reasoning."
+      ]
+    }
+  ]
+}

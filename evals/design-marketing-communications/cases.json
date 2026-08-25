@@ -1,0 +1,41 @@
+{
+  "skill": "design-marketing-communications",
+  "cases": [
+    {
+      "id": "design-marketing-communications-01",
+      "language": "ja",
+      "input": "SNSでバズるコンテンツを作りたいです。どうすればいいですか？",
+      "assertions": [
+        "Does not guarantee buzz or UGC as an achievable, controllable outcome.",
+        "Asks what customer-state transition (current → desired) the content is meant to produce, rather than optimizing for virality as an end in itself.",
+        "Distinguishes function, story, emotion, and logic roles rather than assuming emotional/viral content is always the right choice.",
+        "If a touchpoint (e.g. Shared/Earned) is proposed, states its role and handoff to another owned/paid asset, not a standalone tactic.",
+        "Does not treat exposure or reach as equivalent to a customer state change."
+      ]
+    },
+    {
+      "id": "design-marketing-communications-02",
+      "language": "ja",
+      "input": "認知度は高いのに指名検索が増えません。何が問題でしょうか？",
+      "assertions": [
+        "Names one primary barrier consistent with 'high awareness but low recall-to-action', rather than recommending more awareness advertising by default.",
+        "Considers whether the meaning/message uses the customer's actual subject and context, or whether proof/experience is insufficient to support the promise.",
+        "Distinguishes exposure (awareness) from the specific state transition (recall converting to search intent) that is actually failing.",
+        "Does not assume the fix is simply 'more communication volume'.",
+        "'What not to do' is specific if included."
+      ]
+    },
+    {
+      "id": "design-marketing-communications-03",
+      "language": "en",
+      "input": "We want our new ad campaign to go viral on TikTok. What's the strategy?",
+      "assertions": [
+        "Does not promise or guarantee viral/UGC outcomes as a deliverable.",
+        "Asks what customer-state transition and desired downstream action the campaign is meant to produce, not just reach/virality.",
+        "If a downstream experience is implied by the campaign's promise, states what must fulfill that expectation and who owns it.",
+        "Distinguishes the campaign's function/story/emotion/logic roles rather than assuming 'emotional and shareable' is automatically correct without stating why.",
+        "Does not call exposure or impressions a state change on their own."
+      ]
+    }
+  ]
+}

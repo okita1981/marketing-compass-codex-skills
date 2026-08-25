@@ -1,20 +1,26 @@
 #!/usr/bin/env bash
-# Sync canonical GPT/Codex skills into the installable Claude Code plugin
-# package at plugin/, for distribution via a plugin marketplace (e.g. the
-# claude-community marketplace).
+# Sync canonical GPT/Codex skills into the two installable Claude Code
+# plugin packages, for distribution via a plugin marketplace (e.g. the
+# claude-community marketplace):
+#
+#   plugin/marketing-compass/skills/  <- the 8 Marketing Compass skills
+#   plugin/thinking-staircase/skills/ <- the general-purpose thinking-staircase skill
+#
+# They are two separate plugins (not one plugin with two skill groups)
+# because thinking-staircase is not Marketing Compass-specific; see
+# plugin/thinking-staircase/README.md for why.
 #
 # Source of truth : skills/<name>/{SKILL.md,references/}
-# Generated copy  : plugin/skills/<name>/{SKILL.md,references/}
+# Generated copy  : plugin/<plugin-name>/skills/<name>/{SKILL.md,references/}
 #
 # This script never touches skills/, canonical/, agents/, or assets/, and
-# never touches plugin/.claude-plugin/plugin.json. It only writes under
-# plugin/skills/. Re-run it any time skills/<name>/SKILL.md or
+# never touches either plugin's .claude-plugin/plugin.json. It only writes
+# under plugin/*/skills/. Re-run it any time skills/<name>/SKILL.md or
 # skills/<name>/references/ change.
 #
-# The skill list and copy algorithm live in scripts/lib-sync-skills.sh,
-# shared with scripts/sync-claude-code-skills.sh (which targets
-# .claude/skills/ instead), so both destinations always cover the same set
-# of skills.
+# The copy algorithm lives in scripts/lib-sync-skills.sh, shared with
+# scripts/sync-claude-code-skills.sh (which targets .claude/skills/ instead,
+# unsplit, covering all 9 skills).
 #
 # Usage:
 #   scripts/sync-claude-code-plugin.sh          # sync + report what changed
@@ -32,18 +38,26 @@ if [[ "${1:-}" == "--check" ]]; then
   CHECK_ONLY=1
 fi
 
-if sync_skills_to "plugin/skills" "$CHECK_ONLY"; then
-  CHANGED=0
+CHANGED=0
+
+if sync_skills_to "plugin/marketing-compass/skills" "$CHECK_ONLY" "${MARKETING_COMPASS_PLUGIN_SKILLS[@]}"; then
+  :
+else
+  CHANGED=1
+fi
+
+if sync_skills_to "plugin/thinking-staircase/skills" "$CHECK_ONLY" "${THINKING_STAIRCASE_PLUGIN_SKILLS[@]}"; then
+  :
 else
   CHANGED=1
 fi
 
 if [[ "$CHECK_ONLY" -eq 1 ]]; then
   if [[ "$CHANGED" -eq 1 ]]; then
-    echo "Claude Code plugin skill copies (plugin/skills/) are out of sync with skills/. Run scripts/sync-claude-code-plugin.sh to update." >&2
+    echo "Claude Code plugin skill copies (plugin/marketing-compass/, plugin/thinking-staircase/) are out of sync with skills/. Run scripts/sync-claude-code-plugin.sh to update." >&2
     exit 1
   fi
-  echo "Claude Code plugin skill copies (plugin/skills/) are in sync with skills/."
+  echo "Claude Code plugin skill copies (plugin/marketing-compass/, plugin/thinking-staircase/) are in sync with skills/."
   exit 0
 fi
 

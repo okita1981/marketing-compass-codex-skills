@@ -97,6 +97,10 @@ Default to this compact structure when useful:
 
 For a full seven-level audit, use a table with columns `Level`, `What the input says`, `What is missing`, and `Useful question`. Keep claims traceable to the input.
 
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, use the label translations in [references/model.md](references/model.md); otherwise use the English labels as written in this file. Keep the structure identical regardless of language.
+
 ## Guardrails
 
 - Do not rank a person's intelligence, education, maturity, or worth by level.

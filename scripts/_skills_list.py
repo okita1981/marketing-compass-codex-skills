@@ -18,3 +18,12 @@ SKILLS = [
     "audit-marketing-reasoning",
     "thinking-staircase",
 ]
+
+# As of 2026-08-25, the Claude Code plugin packaging (plugin/) is split into
+# two plugins: marketing-compass (the 8 Marketing Compass skills) and
+# thinking-staircase (the general-purpose skill, shipped separately because
+# it is not marketing-specific — see plugin/thinking-staircase/README.md).
+# .claude/skills/ and the Codex plugin (plugins/marketing-compass/) are
+# unaffected by this split and still cover all 9 skills via SKILLS above.
+MARKETING_COMPASS_PLUGIN_SKILLS = [s for s in SKILLS if s != "thinking-staircase"]
+THINKING_STAIRCASE_PLUGIN_SKILLS = [s for s in SKILLS if s == "thinking-staircase"]

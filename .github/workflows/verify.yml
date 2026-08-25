@@ -1,0 +1,70 @@
+name: verify
+
+# Runs the repo's existing sync/verify scripts (all Python 3 stdlib-only,
+# no dependencies to install) on every push and pull request. This exists
+# to catch the failure mode the repo's own tooling was built to prevent:
+# skills/, .claude/skills/, plugin/marketing-compass/, plugin/thinking-staircase/,
+# and plugins/marketing-compass/ silently drifting apart, or a plugin
+# manifest becoming structurally invalid, without anyone running the
+# checks locally before merging. Also checks evals/ fixtures are
+# well-formed (structure only — see evals/README.md for what that does
+# and does not cover; there is no automated model-grading run here).
+#
+# This workflow does NOT run `claude plugin validate` (the official
+# Claude Code CLI validator) — that requires installing and authenticating
+# the Claude Code CLI, which is out of scope here. verify-claude-code-plugin.py
+# already treats a missing `claude` binary as a warning, not a failure, so
+# this job still passes; run `claude plugin validate <path> --strict`
+# locally before submitting a plugin for marketplace review.
+#
+# skills/ and canonical/ content changes are intentionally NOT blocked by
+# this workflow (see the verify scripts' own docstrings) — content fixes
+# are legitimate, expected work here. This workflow checks packaging
+# structure and sync, not whether skill content itself is "allowed" to
+# change in a given PR.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # verify scripts diff against origin/main
+
+      - name: Ensure origin/main is fetchable
+        # actions/checkout with fetch-depth:0 unshallows the triggering ref,
+        # but doesn't guarantee origin/main is present as a local ref on
+        # every trigger type. The verify scripts run `git diff
+        # origin/main...HEAD`; make sure that resolves instead of silently
+        # warning and skipping the check.
+        run: git fetch origin main:refs/remotes/origin/main || git fetch origin main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Verify .claude/skills/ project skills
+        run: python3 scripts/verify-claude-code-skills.py
+
+      - name: Check .claude/skills/ is in sync with skills/
+        run: bash scripts/sync-claude-code-skills.sh --check
+
+      - name: Verify Claude Code plugin packages (marketing-compass, thinking-staircase)
+        run: python3 scripts/verify-claude-code-plugin.py
+
+      - name: Check Claude Code plugin packages are in sync with skills/
+        run: bash scripts/sync-claude-code-plugin.sh --check
+
+      - name: Verify Codex plugin package
+        run: python3 scripts/verify-codex-plugin.py
+
+      - name: Check Codex plugin package is in sync with skills/
+        run: python3 scripts/sync-codex-plugin.py --check
+
+      - name: Verify eval fixtures (structure only — see evals/README.md)
+        run: python3 scripts/verify-evals.py

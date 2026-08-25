@@ -1,0 +1,42 @@
+{
+  "skill": "articulate-marketing-problem",
+  "cases": [
+    {
+      "id": "articulate-marketing-problem-01",
+      "language": "ja",
+      "input": "営業は「リードの質が悪い」と言い、マーケティングは「商談化率が低いのは営業のせい」と言っています。今期の売上目標が未達です。原因を整理してください。",
+      "assertions": [
+        "Separates the two stakeholders' statements as interpretations/reports, not as confirmed facts.",
+        "Treats 'sales目標未達' itself as the observed condition, not yet as an explained cause.",
+        "Names at least two materially different competing explanations (e.g. lead quality vs. sales execution vs. a shared upstream cause) rather than adopting either stakeholder's framing as correct.",
+        "Does not invent a root cause the input does not support.",
+        "Ends with a provisional problem statement plus what evidence would distinguish the competing explanations, not a solution recommendation.",
+        "Does not jump to diagnosing the maximum bottleneck or proposing a full strategy."
+      ]
+    },
+    {
+      "id": "articulate-marketing-problem-02",
+      "language": "ja",
+      "input": "CRMを新しくしたいのですが、どれを選べばいいですか？",
+      "assertions": [
+        "Does not accept 'CRMを新しくする' as the problem; translates it back into the condition the tool change is meant to fix.",
+        "Asks at most three questions that would materially change scope or the evidence plan (not exhaustive discovery).",
+        "If the underlying condition is still unclear after those questions, returns a provisional problem statement labeled as provisional rather than a CRM recommendation.",
+        "Does not select or rank specific CRM products — that is out of scope for this skill.",
+        "States what would need to be true, or what evidence would be needed, to confirm CRM replacement is actually the right intervention."
+      ]
+    },
+    {
+      "id": "articulate-marketing-problem-03",
+      "language": "en",
+      "input": "Our dashboard shows conversion rate dropped 15% last month, but the sales team says nothing changed on their end. What's going on?",
+      "assertions": [
+        "Distinguishes the logged metric (dashboard conversion rate) from the sales team's report as two different evidence types, not automatically trusting one over the other.",
+        "Flags that 'conversion rate' needs its definition, population, denominator, and period confirmed before the 15% figure can be interpreted.",
+        "Considers at least one explanation other than 'something changed on sales' or 'the dashboard is wrong' (e.g. a definition change, a cohort shift, a tracking/attribution change).",
+        "Does not state a causal conclusion about why the number dropped.",
+        "Specifies what data or system to inspect next (or, if it actually inspects available data in this session, reports what it found) rather than only listing unknowns."
+      ]
+    }
+  ]
+}

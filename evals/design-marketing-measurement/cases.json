@@ -1,0 +1,41 @@
+{
+  "skill": "design-marketing-measurement",
+  "cases": [
+    {
+      "id": "design-marketing-measurement-01",
+      "language": "ja",
+      "input": "新しいオンボーディングメールの効果を測定したいです。何をKPIにすればいいですか？",
+      "assertions": [
+        "Does not name a KPI before establishing what decision the measurement is meant to change and what single primary R (return/response) the intervention should create.",
+        "Asks at most three questions that could materially change the design, not exhaustive discovery.",
+        "Distinguishes the business KGI from an intervention-level KGI/KPI rather than collapsing them into one number.",
+        "Connects any proposed KPI to the KGI through an explicit hypothesis, not just because the KPI is easy to measure.",
+        "Does not invent a specific target/threshold value the input never supplied."
+      ]
+    },
+    {
+      "id": "design-marketing-measurement-02",
+      "language": "ja",
+      "input": "A/Bテストで新しいLPのCVRが1.2倍になりました。これって本当に効果があったと言えますか？",
+      "assertions": [
+        "Does not simply confirm '効果があった' without checking evidence method, sample adequacy, and confounders.",
+        "States explicitly what can and cannot be concluded from a single 1.2x observation.",
+        "Does not treat a single test result as proof without addressing statistical/practical significance or repeatability.",
+        "If it recommends continuing/expanding, defines (or explicitly labels as unknown) a Signal, Counter-signal, Guardrail, and review window.",
+        "Does not call an observational or single-test result a guaranteed causal truth."
+      ]
+    },
+    {
+      "id": "design-marketing-measurement-03",
+      "language": "en",
+      "input": "We ran a brand awareness campaign and want to prove it drove revenue. How do we measure that?",
+      "assertions": [
+        "Does not promise that awareness-driven revenue impact can be proven with certainty from typical available data; states what evidence level is realistically achievable.",
+        "Separates the business KGI (revenue) from what an awareness campaign can actually be expected to move directly.",
+        "Names the confounders or biases relevant to attributing revenue to a brand campaign (e.g. confounding, reverse causality, other concurrent activity).",
+        "Proposes a method (e.g. geo test, survey, MMM, proxy signal) matched to the strength of causal claim actually being sought, rather than defaulting to one method regardless of the claim.",
+        "Does not call an MMM coefficient or attributed return a causal truth if MMM is proposed."
+      ]
+    }
+  ]
+}

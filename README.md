@@ -1,5 +1,7 @@
 # Marketing Compass — GPT / Codex Skills
 
+[![verify](https://github.com/okita1981/marketing-compass-codex-skills/actions/workflows/verify.yml/badge.svg)](https://github.com/okita1981/marketing-compass-codex-skills/actions/workflows/verify.yml)
+
 Marketing Compassは、マーケティングを施策の一覧ではなく、事業成果が生まれる構造と顧客の意思決定から捉えるための判断体系です。
 
 このリポジトリには、Marketing Compass確定正本 v1.0、正本を共通参照して動く8つのGPT / Codex向けスキル、ならびに関連する汎用思考スキル「思考を整理する7段の階段」を収録しています。
@@ -46,7 +48,7 @@ Marketing Compass 8スキル（00〜07）と「思考を整理する7段の階�
 - 因果、反証条件、許容リスク、Guardrail、撤退条件を明示する。
 - フレームワークより現実を優先し、診断だけで終わらず判断と実行へ接続する。
 
-完全な定義と判断原則は、[`canonical/marketing-compass-canonical-v1.0.md`](canonical/marketing-compass-canonical-v1.0.md)を参照してください。
+完全な定義と判断原則は、[`canonical/marketing-compass-canonical-v1.0.md`](canonical/marketing-compass-canonical-v1.0.md)を参照してください。**この正本は人間向けの参照文書であり、AIが実行時に読み込むファイルではありません。** 各スキルの実行時定義は、あくまで`skills/<スキル名>/SKILL.md`と`references/`です。
 
 ## 使い方
 
@@ -161,8 +163,8 @@ Claude Codeは、frontmatterの`description`をもとに、依頼内容に応じ
 
 #### GPT / Codex版との関係・正本・同期方針
 
-- 思想・定義・判断原則の正本は、GPT / Codex版と同じく[`canonical/marketing-compass-canonical-v1.0.md`](canonical/marketing-compass-canonical-v1.0.md)と各`skills/<スキル名>/SKILL.md`・`references/`です。`.claude/skills/`・`plugin/skills/`配下のファイルは、いずれもそこから生成した派生コピーであり、内容は改変していません（`SKILL.md`・`references/*.md`ともバイト単位で同一）。
-- Claude Codeでは`agents/openai.yaml`（表示名・アイコン・呼び出し設定などOpenAI固有の表示設定）と`assets/icon.svg`は使用しないため、`.claude/skills/`・`plugin/skills/`配下には複製していません。
+- 思想・定義・判断原則の正本は、GPT / Codex版と同じく[`canonical/marketing-compass-canonical-v1.0.md`](canonical/marketing-compass-canonical-v1.0.md)と各`skills/<スキル名>/SKILL.md`・`references/`です。`.claude/skills/`・`plugin/marketing-compass/skills/`・`plugin/thinking-staircase/skills/`配下のファイルは、いずれもそこから生成した派生コピーであり、内容は改変していません（`SKILL.md`・`references/*.md`ともバイト単位で同一）。
+- Claude Codeでは`agents/openai.yaml`（表示名・アイコン・呼び出し設定などOpenAI固有の表示設定）と`assets/icon.svg`は使用しないため、`.claude/skills/`・`plugin/marketing-compass/skills/`・`plugin/thinking-staircase/skills/`配下には複製していません。
 - `skills/<スキル名>/SKILL.md`または`references/`を更新した場合は、[`scripts/sync-claude-code-skills.sh`](scripts/sync-claude-code-skills.sh)を実行して`.claude/skills/`側へ反映してください。差分の有無だけを確認したい場合は`--check`を付けて実行します（差分があれば非ゼロ終了）。
 
 ```bash
@@ -178,20 +180,25 @@ python3 scripts/verify-claude-code-skills.py
 
 #### プラグイン化（Marketplace配布用）
 
-`.claude/skills/`（project skill、上記）とは別に、[`plugin/`](plugin)配下に、Claude Codeの[プラグイン](https://code.claude.com/docs/en/plugins)としてMarketplace経由で配布できる形式のパッケージも用意しています。plugin形式ではスキルがプラグイン名で名前空間化されるため、呼び出し方が`.claude/skills/`版と異なります（例: `/marketing-compass:diagnose-marketing-structure`）。詳しくは[`plugin/README.md`](plugin/README.md)を参照してください。
+`.claude/skills/`（project skill、上記）とは別に、[`plugin/`](plugin)配下に、Claude Codeの[プラグイン](https://code.claude.com/docs/en/plugins)としてMarketplace経由で配布できる形式のパッケージも用意しています。plugin形式ではスキルがプラグイン名で名前空間化されるため、呼び出し方が`.claude/skills/`版と異なります（例: `/marketing-compass:diagnose-marketing-structure`）。
 
-**現在の状態：どのMarketplaceにも未掲載です。**
+**プラグインは2つに分かれています**（`thinking-staircase`はMarketing Compass固有ではないため、別プラグインとして独立させています）。
 
-- **公式Marketplace（`claude-plugins-official`）**：外部からの申請の仕組み自体が存在しません。Anthropicが完全裁量で選定しており、申請フォームも公式Marketplaceには反映されません。
-- **Community Marketplace（`claude-community`）**：第三者の申請を受け付ける公開Marketplaceです。申請にはリポジトリ管理者自身のログインが必要で（[claude.ai](https://claude.ai/admin-settings/directory/submissions/plugins/new)はTeam/Enterprise組織向け、[platform.claude.com](https://platform.claude.com/plugins/submit)は個人作者向け）、この作業はリポジトリ管理者ご自身で行っていただく必要があります。
+| プラグイン | 収録スキル | 詳細 |
+|---|---|---|
+| [`plugin/marketing-compass/`](plugin/marketing-compass) | Marketing Compass 8スキル（00〜07） | [`plugin/marketing-compass/README.md`](plugin/marketing-compass/README.md) |
+| [`plugin/thinking-staircase/`](plugin/thinking-staircase) | 思考を整理する7段の階段 | [`plugin/thinking-staircase/README.md`](plugin/thinking-staircase/README.md) |
+
+**Marketplace掲載状況**：`marketing-compass`はCommunity Marketplace（`claude-community`）へ申請済み・審査待ちです。ただしこの申請は、この2分割より前の「9スキル同梱・パスは`plugin`」という構成で行ったものです。分割後は同じ内容が`plugin/marketing-compass`に存在するため、審査でパス不整合が起きた場合は`plugin/marketing-compass`を指定して再申請してください。`thinking-staircase`はまだ未申請です。公式Marketplace（`claude-plugins-official`）には外部からの申請の仕組み自体が存在しません（Anthropicが完全裁量で選定）。Community Marketplaceへの申請は、リポジトリ管理者自身のログインが必要な作業です（[claude.ai](https://claude.ai/admin-settings/directory/submissions/plugins/new)はTeam/Enterprise組織向け、[platform.claude.com](https://platform.claude.com/plugins/submit)は個人作者向け）。
 
 このリポジトリ側では、申請前に必要な準備をすべて済ませてあります。
 
 ```bash
-bash scripts/sync-claude-code-plugin.sh          # 正本から plugin/skills/ を更新
+bash scripts/sync-claude-code-plugin.sh          # 正本から plugin/marketing-compass/skills/・plugin/thinking-staircase/skills/ を更新
 bash scripts/sync-claude-code-plugin.sh --check  # 差分の有無だけを確認（書き込みなし）
-python3 scripts/verify-claude-code-plugin.py     # 構造・内容の検証（claude CLIがあれば claude plugin validate も実行）
-claude plugin validate ./plugin --strict         # 公式validatorを直接実行
+python3 scripts/verify-claude-code-plugin.py     # 構造・内容の検証（claude CLIがあれば claude plugin validate も実行、両プラグイン分）
+claude plugin validate ./plugin/marketing-compass --strict   # 公式validatorを直接実行
+claude plugin validate ./plugin/thinking-staircase --strict
 ```
 
 ローカルでの動作確認（インストール不要）:
@@ -199,23 +206,27 @@ claude plugin validate ./plugin --strict         # 公式validatorを直接実�
 ```bash
 git clone https://github.com/okita1981/marketing-compass-codex-skills.git
 cd marketing-compass-codex-skills
-claude --plugin-dir ./plugin
+claude --plugin-dir ./plugin/marketing-compass
+claude --plugin-dir ./plugin/thinking-staircase
 ```
 
 #### 対応確認済みのClaude Code仕様
 
-[Claude Code Skills公式ドキュメント](https://code.claude.com/docs/en/skills)（2026-08-13時点の内容で確認。`https://docs.claude.com/en/docs/claude-code/skills`からリダイレクトされます）に基づき、project skillの配置場所（`.claude/skills/<skill-name>/SKILL.md`）、`name`/`description`のみのfrontmatter、相対パスによる`references/`参照、`/skill-name`による明示呼び出しと`description`に基づく暗黙呼び出しが、追加設定なしでそのまま機能する仕様であることを確認しています。あわせて[Claude Code Pluginsリファレンス](https://code.claude.com/docs/en/plugins-reference)（同日確認）に基づき、`plugin/.claude-plugin/plugin.json`のマニフェストスキーマ（`name`必須、`version`はvalidatorが推奨）を実装し、実際にインストールされているClaude Code CLIの`claude plugin validate ./plugin --strict`で警告・エラーなしで通ることを確認しています。ローカルにインストール済みのClaude Code CLI（`claude --version` で確認、v2.1.170）でも、これらは特定バージョン以降専用の機能ではない基本機能です。
+[Claude Code Skills公式ドキュメント](https://code.claude.com/docs/en/skills)（2026-08-13時点の内容で確認。`https://docs.claude.com/en/docs/claude-code/skills`からリダイレクトされます）に基づき、project skillの配置場所（`.claude/skills/<skill-name>/SKILL.md`）、`name`/`description`のみのfrontmatter、相対パスによる`references/`参照、`/skill-name`による明示呼び出しと`description`に基づく暗黙呼び出しが、追加設定なしでそのまま機能する仕様であることを確認しています。あわせて[Claude Code Pluginsリファレンス](https://code.claude.com/docs/en/plugins-reference)（同日確認）に基づき、`plugin/marketing-compass/.claude-plugin/plugin.json`・`plugin/thinking-staircase/.claude-plugin/plugin.json`のマニフェストスキーマ（`name`必須、`version`はvalidatorが推奨）を実装し、実際にインストールされているClaude Code CLIの`claude plugin validate <path> --strict`で両プラグインとも警告・エラーなしで通ることを確認しています。ローカルにインストール済みのClaude Code CLI（`claude --version` で確認、v2.1.170）でも、これらは特定バージョン以降専用の機能ではない基本機能です。
 
 ## ディレクトリ構成
 
 ```text
-canonical/      Marketing Compassの思想・定義・判断原則の正本
-skills/         Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
+canonical/                 Marketing Compassの思想・定義・判断原則の正本（人間向け参照文書。実行時には読み込まれない）
+skills/                    Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
 plugins/marketing-compass/ 上記9スキルを束ねたCodexプラグイン
-.agents/plugins/ Codex向けリポジトリMarketplace定義
-.claude/skills/ 上記9スキルすべてをClaude Code project skill向けに複製したコピー
-plugin/         上記9スキルすべてをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
-scripts/        Codex・Claude Code各パッケージの生成・同期・検証スクリプト
+.agents/plugins/           Codex向けリポジトリMarketplace定義
+.claude/skills/            上記9スキルすべてをClaude Code project skill向けに複製したコピー
+plugin/marketing-compass/  Marketing Compass 8スキルをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
+plugin/thinking-staircase/ 思考を整理する7段の階段のみを収録した、独立したClaude Codeプラグイン
+scripts/                   Codex・Claude Code各パッケージの生成・同期・検証スクリプト、およびeval fixtureの構造検証スクリプト
+evals/                     各スキルの回帰テスト用フィクスチャ（入力例＋チェック項目。詳細はevals/README.md）
+.github/workflows/         CI（push・PRごとにsync/verifyスクリプト一式を実行）
 ```
 
 `skills/`配下の各スキルは次を含みます。
@@ -233,6 +244,11 @@ assets/icon.svg      スキル固有アイコン
 SKILL.md       skills/<スキル名>/SKILL.md と同一内容
 references/    skills/<スキル名>/references/ と同一内容
 ```
+
+## 品質保証
+
+- **CI**：[`.github/workflows/verify.yml`](.github/workflows/verify.yml)がpush・PRごとに、全パッケージのsync/verifyスクリプトとeval fixtureの構造検証を実行します（バッジは冒頭参照）。
+- **回帰テスト用フィクスチャ**：[`evals/`](evals)配下に、9スキル各3件・計27件の入力例とチェック項目を用意しています。プロンプトを改訂した際の手動回帰確認に使えます。自動でモデルへ送信・採点する仕組みはまだ含まれていません（詳細は[`evals/README.md`](evals/README.md)）。
 
 ## 適用範囲
 

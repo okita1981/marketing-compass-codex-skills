@@ -7,6 +7,7 @@
 3. Full design
 4. Decision states
 5. Quality checks
+6. Output language
 
 ## 1. Missing-input behavior
 
@@ -89,3 +90,47 @@ Uncertainty and exceptions:
 - Automation does not replace judgment, permission, or relationship.
 - No ROI, urgency, authority, or consensus is invented.
 - “What not to do” is specific.
+
+## 6. Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, translate the field labels above using the table below; keep the field structure and order unchanged. `Signal`, `Counter-signal`, and `Guardrail` are used as-is in Japanese (the established Marketing Compass convention — see `canonical/marketing-compass-canonical-v1.0.md` §7.5, §14), not translated. `ICP` is also used as-is.
+
+| English label | 日本語ラベル |
+|---|---|
+| Core diagnosis | 核心診断 |
+| Primary stop structure | 主要な停滞構造 |
+| Why | 理由 |
+| Missing buyer commitment | 不足している買い手のコミットメント |
+| Next mutual step | 次の双方向のステップ |
+| Missing internal-selling asset | 不足している社内説明用アセット |
+| Do not do | しないこと |
+| Decision owner, scope, and deadline | 決定権者・適用範囲・期限 |
+| Product and sales context | 商品と営業の文脈 |
+| Exclusion criteria | 除外基準 |
+| Demand trigger | 需要トリガー |
+| B2B stage | BtoBステージ |
+| Primary bottleneck | 最大ボトルネック |
+| Secondary hypothesis | 第二候補仮説 |
+| Buying committee | 購買委員会 |
+| Approval and procurement route | 承認・調達ルート |
+| Confirmed facts | 確認済みの事実 |
+| Interpretation | 解釈 |
+| Buyer-side hypotheses | 買い手側の仮説 |
+| Unknowns | 未知の点 |
+| Evidence level | 証拠レベル |
+| Meeting or deal intervention | 商談・案件への介入 |
+| Next mutual commitment | 次の双方向のコミットメント |
+| Automation role | 自動化の役割 |
+| Human-intervention point | 人間が介入するポイント |
+| Review point | 見直し期限 |
+| Uncertainty and exceptions | 不確実性と例外 |
+
+Decision state values (§4):
+
+| English | 日本語 |
+|---|---|
+| Proceed | 前進 |
+| Qualify further | さらなる見極め |
+| Nurture | 育成 |
+| Hold | 保留 |
+| Disqualify | 見送り |

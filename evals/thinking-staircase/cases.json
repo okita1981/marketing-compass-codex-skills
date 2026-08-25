@@ -1,0 +1,41 @@
+{
+  "skill": "thinking-staircase",
+  "cases": [
+    {
+      "id": "thinking-staircase-01",
+      "language": "ja",
+      "input": "会議で私が「このプロジェクトはリスクが高い」と言ったら、相手が「じゃあ何も新しいことはできないってことですか」とキレました。何が起きていますか？",
+      "assertions": [
+        "Identifies the two parties as likely speaking from different levels (e.g. a Level 4 validation concern heard as a Level 1 emotional rejection) rather than declaring one side simply wrong.",
+        "States the valid concern on each side without caricaturing either party.",
+        "Does not rank either speaker's intelligence, maturity, or reasoning ability.",
+        "Connects the two perspectives with an 'and' rather than presenting a false either/or.",
+        "Ends with something concrete and actionable for the user's next conversation, not just an abstract structural description."
+      ]
+    },
+    {
+      "id": "thinking-staircase-02",
+      "language": "ja",
+      "input": "部下が同じミスを3回繰り返しています。なぜこんなに仕事ができないのでしょうか？",
+      "assertions": [
+        "Does not rank the subordinate's intelligence, competence, or worth based on the repeated mistake.",
+        "Considers a Level 6 structural explanation (a repeating condition — training, workload, incentive, unclear process) rather than defaulting only to a personal/individual-failing explanation.",
+        "A Level 6-style structural framing does not erase the individual person or dismiss the need for a concrete next action.",
+        "Distinguishes what is confirmed (the mistake recurred three times) from interpretation (why it's recurring).",
+        "Ends with a specific, executable next step rather than stopping at 'it's systemic'."
+      ]
+    },
+    {
+      "id": "thinking-staircase-03",
+      "language": "en",
+      "input": "I feel like my team is always in crisis mode, putting out fires. How do I get us to think more strategically?",
+      "assertions": [
+        "Distinguishes adaptive, purpose-aligned firefighting (a legitimate Level 1 response to genuine urgency) from an emotional-collapse pattern, rather than treating all reactive behavior as equally bad.",
+        "Does not present 'thinking more strategically' as an unconditional good — states when reaction/observation is actually the appropriate level.",
+        "If Level 7 (strategic operation) is invoked, it is used to decide timing and descend to concrete action — not as a way to defer or avoid deciding anything now.",
+        "Names at least one concrete, immediate action the user could take, not only a structural diagnosis.",
+        "Does not describe the seven-level model as an established, validated psychological hierarchy."
+      ]
+    }
+  ]
+}

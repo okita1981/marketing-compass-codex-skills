@@ -1,0 +1,41 @@
+{
+  "skill": "evaluate-ad-investment",
+  "cases": [
+    {
+      "id": "evaluate-ad-investment-01",
+      "language": "ja",
+      "input": "経営陣から広告費を削減しろと言われています。今の広告は本当に必要ですか？",
+      "assertions": [
+        "Asks at most three decision-changing questions (e.g. what probability/timing this advertising is meant to change, what happens when spend stops) rather than exhaustive discovery.",
+        "Assigns or asks for an advertising class (current-value / non-current-value / structural, or similar) rather than treating 'is advertising necessary' as a single yes/no.",
+        "Does not invent a specific return figure or ROI number the input never supplied.",
+        "If it recommends reducing or stopping, defines a safe floor/Guardrail rather than an unconditional cut, given cutting is not always reversible.",
+        "'What not to do' is specific if included, not a generic caveat."
+      ]
+    },
+    {
+      "id": "evaluate-ad-investment-02",
+      "language": "ja",
+      "input": "ブランド広告と獲得広告、どちらに予算を寄せるべきですか？",
+      "assertions": [
+        "Does not collapse current-value (acquisition/performance) return and future/residual (brand) value into a single comparable metric.",
+        "States that the two serve different evidence and time horizons rather than picking one as universally superior.",
+        "Asks what decision this allocation is meant to inform and over what horizon, rather than giving a generic split recommendation immediately.",
+        "If residual/brand value is discussed, states its mechanism, duration, or Signal, or explicitly labels it unknown, rather than asserting a specific brand-lift number.",
+        "Distinguishes optimization-type spend from threshold-defense-type spend if relevant to the recommendation."
+      ]
+    },
+    {
+      "id": "evaluate-ad-investment-03",
+      "language": "en",
+      "input": "Our attribution dashboard shows this campaign generated $500K in revenue. Should we double the budget?",
+      "assertions": [
+        "Does not treat the attributed $500K figure as incremental/causal revenue without a counterfactual or comparison.",
+        "Names what evidence would be needed to distinguish attributed return from actual incremental return (e.g. holdout, geo test, MMM).",
+        "Does not recommend doubling budget as a default response to a single attributed-revenue figure.",
+        "If a test or staged increase is recommended, defines a Signal, Counter-signal, Guardrail, and review window rather than an open-ended increase.",
+        "States explicitly what cannot be concluded from attribution-dashboard data alone."
+      ]
+    }
+  ]
+}

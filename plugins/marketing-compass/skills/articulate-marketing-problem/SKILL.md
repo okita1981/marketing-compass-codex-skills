@@ -112,6 +112,10 @@ Always distinguish:
 - What the problem can defensibly be called now
 - What should be checked or collected next
 
+## Output language
+
+Respond in the language of the user's most recent message. When replying in Japanese, use the label translations in [references/output-contract.md](references/output-contract.md); otherwise use the English labels as written there. Keep the field structure and order identical regardless of language.
+
 ## Guardrails
 
 - Do not turn a complaint, metric, or proposed solution into the problem by paraphrasing it.

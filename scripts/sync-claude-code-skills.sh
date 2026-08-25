@@ -9,10 +9,10 @@
 # skills/<name>/references/ change, to propagate the update to the Claude
 # Code copy without hand-editing two places.
 #
-# The skill list and copy algorithm live in scripts/lib-sync-skills.sh,
-# shared with scripts/sync-claude-code-plugin.sh (which targets
-# plugin/skills/ instead), so both destinations always cover the same set of
-# skills.
+# The copy algorithm lives in scripts/lib-sync-skills.sh, shared with
+# scripts/sync-claude-code-plugin.sh (which targets the plugin/ packages
+# instead). This script always syncs all 9 skills (CLAUDE_CODE_SKILLS);
+# unlike the plugin packages, .claude/skills/ is not split.
 #
 # Usage:
 #   scripts/sync-claude-code-skills.sh          # sync + report what changed
@@ -30,7 +30,7 @@ if [[ "${1:-}" == "--check" ]]; then
   CHECK_ONLY=1
 fi
 
-if sync_skills_to ".claude/skills" "$CHECK_ONLY"; then
+if sync_skills_to ".claude/skills" "$CHECK_ONLY" "${CLAUDE_CODE_SKILLS[@]}"; then
   CHANGED=0
 else
   CHANGED=1
