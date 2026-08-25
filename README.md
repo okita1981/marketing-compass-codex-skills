@@ -74,16 +74,24 @@ ChatGPTとCodexは、依頼内容に応じて該当スキルを暗黙に選択�
 
 #### Codexプラグインとして使う
 
-9スキルを一つに束ねたCodexプラグインを[`plugins/marketing-compass/`](plugins/marketing-compass)に収録しています。マニフェストは[`plugins/marketing-compass/.codex-plugin/plugin.json`](plugins/marketing-compass/.codex-plugin/plugin.json)、リポジトリ用Marketplace定義は[`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)です。
+**プラグインは2つに分かれています**（`thinking-staircase`はMarketing Compass固有ではないため、別プラグインとして独立させています。Claude Code側の[`plugin/`](plugin)と同じ分割です）。
+
+| プラグイン | 収録スキル | 詳細 |
+|---|---|---|
+| [`plugins/marketing-compass/`](plugins/marketing-compass) | Marketing Compass 8スキル（00〜07） | [`plugins/marketing-compass/README.md`](plugins/marketing-compass/README.md) |
+| [`plugins/thinking-staircase/`](plugins/thinking-staircase) | 思考を整理する7段の階段 | [`plugins/thinking-staircase/README.md`](plugins/thinking-staircase/README.md) |
+
+マニフェストはそれぞれ`plugins/<プラグイン名>/.codex-plugin/plugin.json`、リポジトリ用Marketplace定義は[`.agents/plugins/marketplace.json`](.agents/plugins/marketplace.json)（両プラグインを個別エントリとして収録）です。
 
 ```bash
 git clone https://github.com/okita1981/marketing-compass-codex-skills.git
 cd marketing-compass-codex-skills
 codex plugin marketplace add .
 codex plugin add marketing-compass@marketing-compass
+codex plugin add thinking-staircase@marketing-compass
 ```
 
-正本側の9スキルを更新した場合は、Codexプラグイン内のコピーを同期・確認してください。
+正本側の9スキルを更新した場合は、Codexプラグイン内のコピーを同期・確認してください（両プラグインをまとめて処理します）。
 
 ```bash
 python scripts/sync-codex-plugin.py
@@ -91,7 +99,7 @@ python scripts/sync-codex-plugin.py --check
 python scripts/verify-codex-plugin.py
 ```
 
-Codex公式のプラグイン検証ツールが利用できる環境では、`validate_plugin.py plugins/marketing-compass`も実行してください。
+Codex公式のプラグイン検証ツールが利用できる環境では、`validate_plugin.py plugins/marketing-compass`・`validate_plugin.py plugins/thinking-staircase`も実行してください。
 
 ### Claude Code
 
@@ -217,13 +225,14 @@ claude --plugin-dir ./plugin/thinking-staircase
 ## ディレクトリ構成
 
 ```text
-canonical/                 Marketing Compassの思想・定義・判断原則の正本（人間向け参照文書。実行時には読み込まれない）
-skills/                    Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
-plugins/marketing-compass/ 上記9スキルを束ねたCodexプラグイン
-.agents/plugins/           Codex向けリポジトリMarketplace定義
-.claude/skills/            上記9スキルすべてをClaude Code project skill向けに複製したコピー
-plugin/marketing-compass/  Marketing Compass 8スキルをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
-plugin/thinking-staircase/ 思考を整理する7段の階段のみを収録した、独立したClaude Codeプラグイン
+canonical/                  Marketing Compassの思想・定義・判断原則の正本（人間向け参照文書。実行時には読み込まれない）
+skills/                     Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
+plugins/marketing-compass/  Marketing Compass 8スキルを束ねたCodexプラグイン
+plugins/thinking-staircase/ 思考を整理する7段の階段のみを収録した、独立したCodexプラグイン
+.agents/plugins/            Codex向けリポジトリMarketplace定義（上記2プラグインを個別エントリとして収録）
+.claude/skills/             9スキルすべてをClaude Code project skill向けに複製したコピー
+plugin/marketing-compass/   Marketing Compass 8スキルをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
+plugin/thinking-staircase/  思考を整理する7段の階段のみを収録した、独立したClaude Codeプラグイン
 scripts/                   Codex・Claude Code各パッケージの生成・同期・検証スクリプト、およびeval fixtureの構造検証スクリプト
 evals/                     各スキルの出力品質・入口ルーティングの回帰テスト用フィクスチャ（詳細はevals/README.md）
 evals/trigger-routing/     短い入力に対する起動条件・ルーティング精度の回帰テスト用フィクスチャ（詳細はevals/trigger-routing/README.md）

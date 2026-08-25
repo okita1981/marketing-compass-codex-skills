@@ -1,0 +1,35 @@
+{
+  "name": "thinking-staircase",
+  "version": "1.0.0",
+  "description": "A general-purpose thinking navigation skill: sort ambiguous thoughts, disagreements, proposals, meetings, decisions, or emotional reactions with a seven-level model (reaction, observation, causality, validation, self-check, structure, strategic operation). Not specific to marketing.",
+  "author": {
+    "name": "Kousuke Okita / 沖田紘亮",
+    "url": "https://github.com/okita1981"
+  },
+  "homepage": "https://github.com/okita1981/marketing-compass-codex-skills",
+  "repository": "https://github.com/okita1981/marketing-compass-codex-skills",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "thinking",
+    "reasoning",
+    "decision-making",
+    "metacognition",
+    "critical-thinking",
+    "communication"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Thinking Staircase",
+    "shortDescription": "思考の段差を見抜き、構造から実行可能な行動へ整理するスキル",
+    "longDescription": "反応・観察・因果・検証・自己点検・構造・戦略的運用を行き来し、曖昧な思考や対立を判断と行動へ整理する",
+    "developerName": "Kousuke Okita / 沖田紘亮",
+    "category": "Productivity",
+    "capabilities": [
+      "Skills"
+    ],
+    "defaultPrompt": [
+      "会議が噛み合わない原因を、7段の階段で整理して",
+      "この解決策は、どの前提を飛ばしている？"
+    ]
+  }
+}
