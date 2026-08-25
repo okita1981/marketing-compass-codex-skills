@@ -1,5 +1,7 @@
 # Marketing Compass — GPT / Codex Skills
 
+[![verify](https://github.com/okita1981/marketing-compass-codex-skills/actions/workflows/verify.yml/badge.svg)](https://github.com/okita1981/marketing-compass-codex-skills/actions/workflows/verify.yml)
+
 Marketing Compassは、マーケティングを施策の一覧ではなく、事業成果が生まれる構造と顧客の意思決定から捉えるための判断体系です。
 
 このリポジトリには、Marketing Compass確定正本 v1.0、正本を共通参照して動く8つのGPT / Codex向けスキル、ならびに関連する汎用思考スキル「思考を整理する7段の階段」を収録しています。
