@@ -46,7 +46,7 @@ Marketing Compass 8スキル（00〜07）と「思考を整理する7段の階�
 - 因果、反証条件、許容リスク、Guardrail、撤退条件を明示する。
 - フレームワークより現実を優先し、診断だけで終わらず判断と実行へ接続する。
 
-完全な定義と判断原則は、[`canonical/marketing-compass-canonical-v1.0.md`](canonical/marketing-compass-canonical-v1.0.md)を参照してください。
+完全な定義と判断原則は、[`canonical/marketing-compass-canonical-v1.0.md`](canonical/marketing-compass-canonical-v1.0.md)を参照してください。**この正本は人間向けの参照文書であり、AIが実行時に読み込むファイルではありません。** 各スキルの実行時定義は、あくまで`skills/<スキル名>/SKILL.md`と`references/`です。
 
 ## 使い方
 
