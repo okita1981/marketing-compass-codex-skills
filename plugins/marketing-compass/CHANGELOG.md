@@ -2,6 +2,10 @@
 
 All notable changes to the `marketing-compass` Codex plugin are documented here. Versions follow [Semantic Versioning](https://semver.org).
 
+## 2.0.1 — 2026-08-25
+
+**Patch.** Frontmatter `description` improved for all 8 skills to add Japanese trigger vocabulary and explicit routing-boundary language, so short Japanese consultations are more reliably routed to the correct entry-point skill (00 → 01 → 02–07). No skill was added, removed, or renamed; no `SKILL.md` body, `references/`, `agents/openai.yaml`, or judgment logic changed. Mirrors the same patch already applied to the Claude Code plugin (see [`plugin/marketing-compass/CHANGELOG.md`](../../plugin/marketing-compass/CHANGELOG.md)) — the two `marketing-compass` packages are kept at the same version number since they package the identical skill content. Treated as a patch (not minor) release: this corrects previously under-specified routing metadata to match behavior the skills' own bodies already documented, rather than adding new skill capability.
+
 ## 2.0.0 — 2026-08-25
 
 **Breaking.** `thinking-staircase` is removed from this plugin. Thinking Staircase is a general-purpose thinking-navigation skill, not specific to Marketing Compass, and now ships as its own plugin at [`../thinking-staircase/`](../thinking-staircase). Users who need it should install that plugin as well; there is no automatic migration. `.agents/plugins/marketplace.json` now lists `thinking-staircase` as a separate entry alongside `marketing-compass`.

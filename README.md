@@ -225,18 +225,18 @@ claude --plugin-dir ./plugin/thinking-staircase
 ## ディレクトリ構成
 
 ```text
-canonical/                  Marketing Compassの思想・定義・判断原則の正本（人間向け参照文書。実行時には読み込まれない）
-skills/                     Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
-plugins/marketing-compass/  Marketing Compass 8スキルを束ねたCodexプラグイン
-plugins/thinking-staircase/ 思考を整理する7段の階段のみを収録した、独立したCodexプラグイン
-.agents/plugins/            Codex向けリポジトリMarketplace定義（上記2プラグインを個別エントリとして収録）
-.claude/skills/             9スキルすべてをClaude Code project skill向けに複製したコピー
-plugin/marketing-compass/   Marketing Compass 8スキルをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
-plugin/thinking-staircase/  思考を整理する7段の階段のみを収録した、独立したClaude Codeプラグイン
-scripts/                   Codex・Claude Code各パッケージの生成・同期・検証スクリプト、およびeval fixtureの構造検証スクリプト
-evals/                     各スキルの出力品質・入口ルーティングの回帰テスト用フィクスチャ（詳細はevals/README.md）
-evals/trigger-routing/     短い入力に対する起動条件・ルーティング精度の回帰テスト用フィクスチャ（詳細はevals/trigger-routing/README.md）
-.github/workflows/         CI（push・PRごとにsync/verifyスクリプト一式を実行）
+canonical/                   Marketing Compassの思想・定義・判断原則の正本（人間向け参照文書。実行時には読み込まれない）
+skills/                      Marketing Compass 8スキル＋関連する汎用思考スキル（GPT / Codex向け正本、計9スキル）
+plugins/marketing-compass/   Marketing Compass 8スキルを束ねたCodexプラグイン
+plugins/thinking-staircase/  思考を整理する7段の階段のみを収録した、独立したCodexプラグイン
+.agents/plugins/             Codex向けリポジトリMarketplace定義（上記2プラグインを個別エントリとして収録）
+.claude/skills/              9スキルすべてをClaude Code project skill向けに複製したコピー
+plugin/marketing-compass/    Marketing Compass 8スキルをClaude Codeプラグイン（Marketplace配布用）向けに複製したパッケージ
+plugin/thinking-staircase/   思考を整理する7段の階段のみを収録した、独立したClaude Codeプラグイン
+scripts/                     Codex・Claude Code各パッケージの生成・同期・検証スクリプト、およびeval fixtureの構造検証スクリプト
+evals/                       各スキルの出力品質・入口ルーティングの回帰テスト用フィクスチャ（詳細はevals/README.md）
+evals/trigger-routing/       短い入力に対する起動条件・ルーティング精度の回帰テスト用フィクスチャ（詳細はevals/trigger-routing/README.md）
+.github/workflows/           CI（push・PRごとにsync/verifyスクリプト一式を実行）
 ```
 
 `skills/`配下の各スキルは次を含みます。
