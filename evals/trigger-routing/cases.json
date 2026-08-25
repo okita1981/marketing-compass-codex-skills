@@ -1,0 +1,226 @@
+{
+  "scope": "trigger-routing",
+  "note": "These fixtures check ENTRY-POINT ROUTING (which skill a short input should reach first), not output quality. See ../README.md for the separate per-skill output-quality fixtures, and README.md in this directory for what 'checking' a fixture actually means here (STATIC_METADATA_REVIEW vs LIVE_TRIGGER_TEST).",
+  "cases": [
+    {
+      "id": "tr-01",
+      "prompt": "うちの商品、良いのに売れない",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["articulate-marketing-problem"],
+      "must_not_route_first": ["design-marketing-communications", "evaluate-ad-investment"],
+      "category": "structural_diagnosis",
+      "contrast_group": null,
+      "rationale": "\"良いのに売れない\" states an observed mismatch (product is judged good, sales are not happening) without naming a bottleneck — matches diagnose-marketing-structure's own recalled-but-not-chosen case (choice reason, price, evidence, risk). If \"良い\" is itself an unverified, contested belief (e.g. different people in the org disagree on why it's good or whether it's actually selling), articulate-marketing-problem is an acceptable first stop instead. Must not jump straight to a communications or ad-investment fix before the bottleneck is located."
+    },
+    {
+      "id": "tr-02",
+      "prompt": "SEOとリスティング、どっちが先？",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": [],
+      "must_not_route_first": ["evaluate-ad-investment", "design-marketing-communications"],
+      "category": "structural_diagnosis",
+      "contrast_group": null,
+      "rationale": "A prioritization question between two channels/initiatives with no stated bottleneck — diagnose-marketing-structure's own description already covers \"how to choose among competing initiatives.\" Committing to either channel skill first would repeat the exact anti-pattern its body warns against: \"Do not assume the channel named by the user is the actual problem.\" Neither is an acceptable first stop for this exact framing; once the bottleneck is known from a follow-up turn, either specialist skill can legitimately take over from there."
+    },
+    {
+      "id": "tr-03",
+      "prompt": "インスタ強化した方がいい？",
+      "primary_skill": "articulate-marketing-problem",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["design-marketing-communications"],
+      "category": "undefined_problem",
+      "contrast_group": null,
+      "rationale": "A solution (\"strengthen Instagram\") proposed with no stated condition it is meant to change — the canonical case articulate-marketing-problem's own body names explicitly: \"Do not accept the requested solution as the problem.\" diagnose-marketing-structure is an acceptable first stop too, since its own body would itself redirect to articulate-marketing-problem given this exact jump-to-solution pattern. Must not proceed directly into communications/channel design before the underlying goal or customer state is defined, even though \"SNS\" is literally named in that skill's own description."
+    },
+    {
+      "id": "tr-04",
+      "prompt": "代理店からこの提案来た、どう思う？",
+      "primary_skill": "audit-marketing-reasoning",
+      "allowed_secondary_skills": [],
+      "must_not_route_first": ["diagnose-marketing-structure"],
+      "category": "reasoning_audit",
+      "contrast_group": null,
+      "rationale": "The object under discussion is an external proposal itself, not an undiagnosed business symptom — audit-marketing-reasoning's own description covers this directly (\"audit marketing proposals...for causal validity, evidence quality...\"). Symmetric to the CPA contrast cases below: just as a metric worsening should not be pulled into 07, a proposal review should not be redirected into 01 just because it mentions marketing tactics."
+    },
+    {
+      "id": "tr-05",
+      "prompt": "この会議、話が噛み合わない",
+      "primary_skill": "thinking-staircase",
+      "allowed_secondary_skills": ["articulate-marketing-problem"],
+      "must_not_route_first": ["diagnose-marketing-structure"],
+      "category": "negative_control",
+      "contrast_group": null,
+      "rationale": "Negative control for the 00 description update. This is thinking-staircase's own onboarding example almost verbatim (\"会議が噛み合わない原因を、7段の階段で整理して\"). articulate-marketing-problem's newly added Japanese vocabulary (\"部門や関係者で話している内容が食い違う\") is about marketing-specific conflicting statements, not general meeting misalignment, and is an acceptable secondary read if the disagreement is specifically over marketing facts. This case exists to check that 00's new wording does not over-trigger and pull a purely general facilitation request away from thinking-staircase. It is unbounded to jump straight into structural bottleneck diagnosis before the disagreement itself is even sorted out."
+    },
+    {
+      "id": "tr-06",
+      "prompt": "解約率が高い",
+      "primary_skill": "assess-ma-crm-ltv",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["design-marketing-communications"],
+      "category": "retention_ltv",
+      "contrast_group": null,
+      "rationale": "Direct match for assess-ma-crm-ltv's own vocabulary (churn rate) and its value-realization diagnosis. Churn is also one node of diagnose-marketing-structure's continuation stage, so that skill is an acceptable secondary read for a fuller structural pass. Must not default to a messaging/awareness fix — the skill's own guardrail (\"Do not use discounts to hide a value-realization failure\") implies the same discipline against defaulting to communications."
+    },
+    {
+      "id": "tr-07",
+      "prompt": "LTVを上げるには？",
+      "primary_skill": "assess-ma-crm-ltv",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["evaluate-ad-investment"],
+      "category": "retention_ltv",
+      "contrast_group": null,
+      "rationale": "Direct LTV vocabulary match. diagnose-marketing-structure's continuation/relationship stage is an acceptable secondary read since LTV formation spans the whole customer-decision structure. LTV is not primarily an ad-investment question even though ad payback sometimes references it."
+    },
+    {
+      "id": "tr-08",
+      "prompt": "MA入れた方がいい？",
+      "primary_skill": "assess-ma-crm-ltv",
+      "allowed_secondary_skills": ["articulate-marketing-problem"],
+      "must_not_route_first": ["design-marketing-communications", "evaluate-ad-investment"],
+      "category": "retention_ltv",
+      "contrast_group": null,
+      "rationale": "Deliberately double-claimed vocabulary, not a routing bug: assess-ma-crm-ltv's own pre-existing English description already says \"Use when a user asks whether to introduce or strengthen MA\" verbatim, so it remains a legitimate first stop that itself restates the underlying decision (\"If the request begins with a tool or campaign, restate the underlying decision\"). articulate-marketing-problem's frontmatter separately names \"CRM/MA\" as a jump-to-solution trigger, so it is an equally legitimate first stop if no customer-state problem has been stated at all. Both are acceptable; MA is not a communications or ad-investment decision."
+    },
+    {
+      "id": "tr-09",
+      "prompt": "リードは増えてるのに売上が伸びない",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["design-btob-growth"],
+      "must_not_route_first": ["evaluate-ad-investment"],
+      "category": "structural_diagnosis",
+      "contrast_group": null,
+      "rationale": "States a mismatch between two metrics (leads vs. revenue) without naming which stage of the funnel is failing or confirming a B2B context — diagnose-marketing-structure's own bottleneck-selection process is the right first stop. If a B2B buying-committee context is confirmed, design-btob-growth's own stall diagnosis becomes the natural next stop. Must not assume it is an acquisition/ad problem just because \"leads\" is mentioned."
+    },
+    {
+      "id": "tr-10",
+      "prompt": "展示会で名刺1000枚、商談にならない",
+      "primary_skill": "design-btob-growth",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["assess-ma-crm-ltv"],
+      "category": "btob_stall",
+      "contrast_group": null,
+      "rationale": "Direct match for design-btob-growth's own vocabulary (trade-show business cards not converting to meetings) and its content-downloads/first-meeting stall diagnosis. diagnose-marketing-structure remains an acceptable secondary read for a company-wide bottleneck pass. This is a first-meeting conversion problem, not a retention/CRM problem."
+    },
+    {
+      "id": "tr-11",
+      "prompt": "TVCM打ちたい、効果測定できる？",
+      "primary_skill": "evaluate-ad-investment",
+      "allowed_secondary_skills": ["design-marketing-measurement"],
+      "must_not_route_first": ["design-marketing-communications"],
+      "category": "ad_investment",
+      "contrast_group": null,
+      "rationale": "The underlying decision is a TV-advertising investment (\"打ちたい\"); evaluate-ad-investment's own description explicitly covers TV campaigns and return/time-horizon classification. If the user's actual ask narrows purely to measurement feasibility, design-marketing-measurement legitimately becomes primary instead — this pairing exists to exercise that 02/03 boundary. TVCM as a channel choice is not itself a communications/message-design request."
+    },
+    {
+      "id": "tr-12",
+      "prompt": "予算どこに寄せる？",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["evaluate-ad-investment"],
+      "must_not_route_first": ["design-marketing-measurement"],
+      "category": "structural_diagnosis",
+      "contrast_group": null,
+      "rationale": "Budget-allocation-across-initiatives is already named explicitly in diagnose-marketing-structure's own English description (\"how to choose among competing initiatives\"). If the allocation is specifically across ad channels, evaluate-ad-investment is an acceptable secondary read. Allocation itself is a prioritization decision, not fundamentally a measurement-system design request."
+    },
+    {
+      "id": "tr-13",
+      "prompt": "来期予算3億の配分",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["evaluate-ad-investment", "design-marketing-measurement"],
+      "must_not_route_first": ["design-btob-growth", "assess-ma-crm-ltv", "design-marketing-communications"],
+      "category": "structural_diagnosis",
+      "contrast_group": null,
+      "rationale": "Same underlying question as tr-12 at annual planning scale; the whole-business scope means diagnose-marketing-structure's cross-initiative bottleneck lens should come first, before drilling into any single specialist area. evaluate-ad-investment or design-marketing-measurement can reasonably follow once priorities are set."
+    },
+    {
+      "id": "tr-14",
+      "prompt": "マーケ部の評価指標どうする？",
+      "primary_skill": "design-marketing-measurement",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["evaluate-ad-investment"],
+      "category": "measurement_definition",
+      "contrast_group": null,
+      "rationale": "A request to design the department's evaluation metrics/KPI tree is design-marketing-measurement's own core territory. If the department's overall priorities or structure are unclear first, diagnose-marketing-structure is an acceptable secondary read. Not specifically an ad-investment question; ad-specific incremental-CPA detail belongs to evaluate-ad-investment only once advertising itself is the object being evaluated."
+    },
+    {
+      "id": "tr-15",
+      "prompt": "ブランディングって意味ある？",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["articulate-marketing-problem"],
+      "must_not_route_first": ["design-marketing-communications", "evaluate-ad-investment"],
+      "category": "undefined_problem",
+      "contrast_group": null,
+      "rationale": "A bare value-justification question with no stated customer state or goal — the same shape as tr-17 (\"認知度を上げたい\"). design-marketing-communications' own new routing clause covers exactly this: when the customer state to move, or the reason branding is being questioned, is undefined, articulate-marketing-problem or diagnose-marketing-structure comes first. Must not jump straight into brand-communications design or ad-investment classification before that is grounded, even though \"brand message\" and \"whether advertising is worth it\" are both literally named in those two skills' own descriptions."
+    },
+    {
+      "id": "tr-16",
+      "prompt": "CPAが上がってきた",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["evaluate-ad-investment", "design-marketing-measurement"],
+      "must_not_route_first": ["design-marketing-communications"],
+      "category": "structural_diagnosis",
+      "contrast_group": "cpa",
+      "rationale": "Bare form of the CPA contrast set (see tr-19/tr-20/tr-21): no stated intent beyond noticing the metric moved, so the cause is unknown and diagnose-marketing-structure is the default first stop. Compare to tr-19, which states the same observation but with an explicit cause-finding intent — both resolve to the same primary skill, which is the expected, non-surprising half of the contrast. CPA moving by itself is not a communications-design trigger."
+    },
+    {
+      "id": "tr-17",
+      "prompt": "認知度を上げたい",
+      "primary_skill": "articulate-marketing-problem",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["design-marketing-communications"],
+      "category": "undefined_problem",
+      "contrast_group": "awareness",
+      "rationale": "The explicit test case named in the review: a bare \"raise awareness\" request must not, by itself, route unconditionally into awareness-tactic design. \"認知向上\" is one of articulate-marketing-problem's own named jump-to-solution triggers. Compare to tr-22, which states the same underlying goal (recall) but with an explicit numeric target and design ask — that one legitimately goes straight to design-marketing-communications, which is the point of the contrast."
+    },
+    {
+      "id": "tr-18",
+      "prompt": "競合が値下げしてきた",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": ["evaluate-ad-investment"],
+      "must_not_route_first": ["design-marketing-communications", "assess-ma-crm-ltv"],
+      "category": "structural_diagnosis",
+      "contrast_group": null,
+      "rationale": "Direct match for diagnose-marketing-structure's own new competitive-pricing vocabulary and the choice/price node in its diagnostic model. If the response under consideration is specifically an advertising reaction, evaluate-ad-investment is an acceptable secondary read. A competitor price move is not by itself a messaging or retention-tool decision until a structural response is chosen."
+    },
+    {
+      "id": "tr-19",
+      "prompt": "CPAが上がった。原因を特定したい",
+      "primary_skill": "diagnose-marketing-structure",
+      "allowed_secondary_skills": [],
+      "must_not_route_first": ["design-marketing-measurement", "evaluate-ad-investment"],
+      "category": "structural_diagnosis",
+      "contrast_group": "cpa",
+      "rationale": "First leg of the CPA contrast triad. The explicit \"原因を特定したい\" (want to find the cause) states a cause-diagnosis intent, which is diagnose-marketing-structure's own territory, not a request to define the metric (tr-20) or to act on an already-defined guardrail (tr-21). Same primary skill as the bare tr-16, by design — this pair shows that adding explicit intent does not change the routing when that intent is itself \"find the cause.\""
+    },
+    {
+      "id": "tr-20",
+      "prompt": "CPAをどの売上・期間・コンバージョンで定義すべき？",
+      "primary_skill": "design-marketing-measurement",
+      "allowed_secondary_skills": [],
+      "must_not_route_first": ["diagnose-marketing-structure"],
+      "category": "measurement_definition",
+      "contrast_group": "cpa",
+      "rationale": "Second leg of the CPA contrast triad. The question is explicitly about definition (population, period, conversion event) — design-marketing-measurement's own body covers exactly this: \"Define the population, denominator, attribution window, cohort, data source, owner, and measurement cadence for every operationalized metric.\" This is not a cause-diagnosis request, so diagnose-marketing-structure should not be first here even though the same word \"CPA\" appears in tr-16/tr-19."
+    },
+    {
+      "id": "tr-21",
+      "prompt": "広告CPAが許容上限を超えた。予算を止めるべき？",
+      "primary_skill": "evaluate-ad-investment",
+      "allowed_secondary_skills": ["diagnose-marketing-structure"],
+      "must_not_route_first": ["design-marketing-measurement"],
+      "category": "ad_investment",
+      "contrast_group": "cpa",
+      "rationale": "Third leg of the CPA contrast triad. A guardrail is stated as already crossed (\"許容上限を超えた\") and the ask is an execution decision (stop the budget?) — evaluate-ad-investment's own \"Guardrail / Action if crossed\" structure covers this directly. diagnose-marketing-structure is an acceptable secondary read if the guardrail itself needs re-examining structurally, but this is not a request to design the measurement system (already defined, per the prompt)."
+    },
+    {
+      "id": "tr-22",
+      "prompt": "比較検討時の純粋想起を20%から30%へ上げる接点設計を作りたい",
+      "primary_skill": "design-marketing-communications",
+      "allowed_secondary_skills": [],
+      "must_not_route_first": ["articulate-marketing-problem", "diagnose-marketing-structure"],
+      "category": "communications_design",
+      "contrast_group": "awareness",
+      "rationale": "Second leg of the awareness contrast pair (see tr-17). Unlike the bare \"認知度を上げたい,\" this states a defined customer-state target (pure recall, 20%→30%, specifically at the comparison-consideration moment) and an explicit design ask (\"接点設計\") — a fully formed communications-design request. Deferring to articulate-marketing-problem or diagnose-marketing-structure here would be over-cautious: the point of this pair is that design-marketing-communications' own new routing clause should not make it defer even when the request is already well-formed."
+    }
+  ]
+}

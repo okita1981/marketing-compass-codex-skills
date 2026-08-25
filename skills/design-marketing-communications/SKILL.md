@@ -1,6 +1,6 @@
 ---
 name: design-marketing-communications
-description: "Design marketing communications from a defined customer-state transition, meaning, recall, trust, comparison, expectation, and action path rather than from channels. Use when a user asks for a communications strategy, brand message, awareness or recall plan, PESO or touchpoint roles, TV/PR/SNS/Web/store integration, a functional-versus-emotional message decision, expectation and UX alignment, word-of-mouth or buzz design, or a route from paid contact into owned assets, search, sales, store, product, or customer success."
+description: "Design marketing communications from a defined customer-state transition, meaning, recall, trust, comparison, expectation, and action path rather than from channels. Use when a user asks for a communications strategy, brand message, awareness or recall plan, PESO or touchpoint roles, TV/PR/SNS/Web/store integration, a functional-versus-emotional message decision, expectation and UX alignment, word-of-mouth or buzz design, or a route from paid contact into owned assets, search, sales, store, product, or customer success. 「認知度や想起を上げたい」「ブランディングをどうするか」「SNSやオウンドメディア、コンテンツを強化すべきか」「口コミやバズを起こしたい」「タッチポイントやPESOの役割をどう設計するか」など、顧客状態の変化を目的とした接点・メッセージ設計の相談に使う。動かしたい顧客状態や認知を上げたい理由がまだ定義されていない場合は、先にarticulate-marketing-problemまたはdiagnose-marketing-structureで問題を定義してから戻る。"
 ---
 
 # Design Marketing Communications

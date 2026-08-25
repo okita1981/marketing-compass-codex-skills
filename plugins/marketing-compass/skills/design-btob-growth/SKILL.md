@@ -1,6 +1,6 @@
 ---
 name: design-btob-growth
-description: "Diagnose and design B2B growth across ICP and demand triggers, contact and recall, first meetings, problem resolution, comparison, buying committees, internal approval, procurement, implementation, value realization, and continuing relationships. Use when a user asks why B2B leads, meetings, opportunities, proposals, or wins are not growing; how to improve discovery or first sales meetings; why deals stall; how to follow up content downloads; how to create ROI, comparison, approval, or internal-selling materials; or how to separate automation from human intervention."
+description: "Diagnose and design B2B growth across ICP and demand triggers, contact and recall, first meetings, problem resolution, comparison, buying committees, internal approval, procurement, implementation, value realization, and continuing relationships. Use when a user asks why B2B leads, meetings, opportunities, proposals, or wins are not growing; how to improve discovery or first sales meetings; why deals stall; how to follow up content downloads; how to create ROI, comparison, approval, or internal-selling materials; or how to separate automation from human intervention. 「商談化率が低い」「展示会で集めた名刺が商談にならない」「リードは増えているのに売上が伸びない」「提案後に話が止まる」「稟議・決裁・購買委員会をどう通すか」「案件化率・受注率を改善したい」など、BtoBの商談・案件成立構造に関する短い相談に使う。"
 ---
 
 # Design B2B Growth

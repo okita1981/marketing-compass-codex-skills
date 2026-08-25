@@ -68,3 +68,6 @@ jobs:
 
       - name: Verify eval fixtures (structure only — see evals/README.md)
         run: python3 scripts/verify-evals.py
+
+      - name: Verify trigger-routing fixtures (structure only — see evals/trigger-routing/README.md)
+        run: python3 scripts/verify-trigger-routing.py

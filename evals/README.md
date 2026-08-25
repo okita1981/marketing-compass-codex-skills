@@ -2,6 +2,8 @@
 
 This directory holds regression-test **fixtures** (input scenarios + checkable assertions) for the 9 skills in this repository. It exists so a prompt revision to any skill can be checked against a fixed set of realistic inputs instead of relying on memory of how the skill used to behave.
 
+These fixtures check **output quality** (once a skill is running, does its response meet its own `references/output-contract.md` checklist). For **entry-point routing** — which skill a short input should reach first, and which it must not — see the separate [`trigger-routing/`](trigger-routing) sibling directory.
+
 ## Scope: data only, no automated grading runner (yet)
 
 **This directory is fixtures, not a test harness.** There is no script here that sends these inputs to a model and grades the response — that would require choosing a model, provisioning API access, and deciding how a non-deterministic response gets pass/fail-judged, which is a separate decision this repository hasn't made yet. Wiring these fixtures into an actual automated eval run (locally or in CI) is future work, not claimed as done by this directory's existence.
